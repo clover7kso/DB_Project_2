@@ -1,0 +1,2 @@
+USE vaccine_erp;
+DELETE FROM user WHERE id="971220-1409514";
