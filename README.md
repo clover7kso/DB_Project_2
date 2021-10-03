@@ -8,6 +8,7 @@ DB_Project_2 : Vaccine ERP
 - [x] Login : http://localhost:3000/login
 - [x] Register : http://localhost:3000/register
 - [ ] About : http://localhost:3000/about
+- [ ] Hospital : http://localhost:3000/hospital
 
 #### frontend 폴더를 visual code로 폴더열기를 한 뒤 터미널을 열고 모듈 설치
 
@@ -32,3 +33,12 @@ npm start
 ```
 npm start
 ```
+
+#### MySQL 연동
+##### Workbench에서 아래와 같은 이름, 설정으로 Connection 생성
+![](https://cdn.discordapp.com/attachments/831546157967867926/894232234591154224/unknown.png)
+##### backend/src/config/db.js 파일에서 MySQL 비밀번호 입력후 저장
+![](https://cdn.discordapp.com/attachments/885967447918776441/894266744342982666/unknown.png)
+##### SQL 파일 업로드 후 CREATE문 모두 실행
+![](https://cdn.discordapp.com/attachments/885967447918776441/894267361736134716/unknown.png)
+
