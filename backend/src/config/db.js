@@ -5,7 +5,7 @@ export function init(){
     host: 'localhost',
     port: '3306', 
     user: 'root',
-    password: '',
+    password: 'ghkfkddl12',
     database: 'vaccine_erp'
   })
 };

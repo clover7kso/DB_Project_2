@@ -5,6 +5,7 @@ import About from './pages/About';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Hospital from './pages/Hospital';
+import Manager from './pages/Manager';
 
 class App extends Component {
     render() {
@@ -15,6 +16,7 @@ class App extends Component {
                 <Route path="/login" component={Login}/>
                 <Route path="/register" component={Register}/>
                 <Route path="/hospital" component={Hospital}/>
+                <Route path="/Manager" component={Manager}/>
             </div>
         );
     }
