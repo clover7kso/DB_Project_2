@@ -9,7 +9,7 @@ DB_Project_2 : Vaccine ERP
 - [x] Register : http://localhost:3000/register
 - [ ] About : http://localhost:3000/about
 - [ ] Hospital : http://localhost:3000/hospital
-- [?] manager : http://localhost:3000/manager
+- [ ] manager : http://localhost:3000/manager
 
 #### frontend 폴더를 visual code로 폴더열기를 한 뒤 터미널을 열고 모듈 설치
 
