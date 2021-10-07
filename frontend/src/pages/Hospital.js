@@ -1,16 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import {
-    CardWrapper,
-    CardHeader,
-    CardHeading,
-    CardBody,
-    CardFieldset,
-    CardInput,
-    CardButton,
-    CardLink
-} from "../components/Card";
-import axios from 'axios';
-        
+import React from 'react';
+
 function Hospitals(){
     return (
         <div>

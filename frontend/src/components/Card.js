@@ -17,6 +17,7 @@ export const CardHeader = styled.header`
 `;
 
 export const CardTitle = styled.div`
+  text-align: left; 
   padding: 7px 0;
   width: 100%;
   font-weight: bold;
@@ -133,3 +134,24 @@ export const CardLink = styled(Link)`
     color: #777;
   }
 `;
+
+export const CardSelect = styled.select`
+  padding: 7px 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: 14px;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px solid #ddd;
+  border-left: 0;
+  transition: border-bottom-color 0.25s ease-in;
+
+  &:focus {
+    border-bottom-color: #e5195f;
+    outline: 0;
+  }
+`
+
+
+export const CardSelectOption = styled.option`
+`

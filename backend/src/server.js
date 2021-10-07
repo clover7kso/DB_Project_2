@@ -3,7 +3,10 @@ import {init} from './config/db.js';
 import login from './api/login.js'
 import register from './api/register.js'
 import cors from 'cors';
-import manager from './api/manager.js';
+import hospitalUpdate from './api/hospitalUpdate.js';
+import hospitalSido from './api/hospitalSido.js';
+import hospitalSi from './api/hospitalSi.js';
+import hospitaList from './api/hospitaList.js';
 
 const connection = init();
 
@@ -22,7 +25,10 @@ app.set('port', process.env.PORT || 4000);
 
 login(app, connection);
 register(app, connection);
-manager(app, connection);
+hospitalUpdate(app, connection);
+hospitalSido(app, connection);
+hospitalSi(app, connection);
+hospitaList(app, connection)
 
 app.listen(app.get('port'), () => {
   console.log('Port : ' + app.get('port'));
