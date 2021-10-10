@@ -6,7 +6,7 @@ import cors from 'cors';
 import hospitalUpdate from './api/hospitalUpdate.js';
 import hospitalSido from './api/hospitalSido.js';
 import hospitalSi from './api/hospitalSi.js';
-import hospitaList from './api/hospitaList.js';
+import hospitaListSearch from './api/hospitaListSearch.js';
 
 const connection = init();
 
@@ -28,7 +28,7 @@ register(app, connection);
 hospitalUpdate(app, connection);
 hospitalSido(app, connection);
 hospitalSi(app, connection);
-hospitaList(app, connection)
+hospitaListSearch(app, connection);
 
 app.listen(app.get('port'), () => {
   console.log('Port : ' + app.get('port'));
