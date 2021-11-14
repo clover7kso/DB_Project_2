@@ -14,6 +14,7 @@ import byDay7 from './api/Statistic/byDay7.js';
 import byMonth6 from './api/Statistic/byMonth6.js';
 import company from './api/V_info/company.js';
 import vaccineInfo from './api/V_info/vaccineInfo.js';
+import injectionInfo from './api/User/injectionInfo.js';
 
 const connection = init();
 
@@ -34,6 +35,7 @@ app.set('port', process.env.PORT || 4000);
 
 login(app, connection);
 register(app, connection);
+injectionInfo(app, connection);
 hospitalUpdate(app, connection);
 hospitalSido(app, connection);
 hospitalSi(app, connection);
