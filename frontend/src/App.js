@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Hospital from './pages/Hospital';
 import Manager from './pages/Manager';
+import Statistic from './pages/Statistic';
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
         <Route path="/register" component={Register} />
         <Route path="/hospital" component={Hospital} />
         <Route path="/Manager" component={Manager} />
+        <Route path="/Statistic" component={Statistic} />
       </div>
     );
   }
