@@ -8,17 +8,17 @@ import Hospital from './pages/Hospital';
 import Manager from './pages/Manager';
 
 class App extends Component {
-    render() {
-        return (
-            <div>
-                <Route path="/" component={Home} exact/>
-                <Route path="/about" component={About}/>
-                <Route path="/login" component={Login}/>
-                <Route path="/register" component={Register}/>
-                <Route path="/hospital" component={Hospital}/>
-                <Route path="/Manager" component={Manager}/>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div>
+        <Route path="/" component={Home} exact />
+        <Route path="/about" component={About} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route path="/hospital" component={Hospital} />
+        <Route path="/Manager" component={Manager} />
+      </div>
+    );
+  }
 }
 export default App;

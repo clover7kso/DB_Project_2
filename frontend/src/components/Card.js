@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const CardWrapper = styled.div`
@@ -17,12 +17,12 @@ export const CardHeader = styled.header`
 `;
 
 export const CardTitle = styled.div`
-  text-align: left; 
+  text-align: left;
   padding: 7px 0;
   width: 100%;
   font-weight: bold;
   font-size: 14px;
-  color:#2a2a2a;
+  color: #2a2a2a;
 `;
 
 export const CardHeading = styled.h1`
@@ -113,7 +113,7 @@ export const CardButton = styled.button`
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.08);
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
-  outline:0;
+  outline: 0;
 
   &:hover {
     box-shadow: 0 15px 15px rgba(0, 0, 0, 0.16);
@@ -150,8 +150,6 @@ export const CardSelect = styled.select`
     border-bottom-color: #e5195f;
     outline: 0;
   }
-`
+`;
 
-
-export const CardSelectOption = styled.option`
-`
+export const CardSelectOption = styled.option``;
