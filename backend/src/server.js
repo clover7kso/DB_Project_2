@@ -12,6 +12,8 @@ import bySidoPer from './api/Statistic/bySidoPer.js';
 import bySidoOverPer50 from './api/Statistic/bySidoOverPer50.js';
 import byDay7 from './api/Statistic/byDay7.js';
 import byMonth6 from './api/Statistic/byMonth6.js';
+import company from './api/V_info/company.js';
+import vaccineInfo from './api/V_info/vaccineInfo.js';
 
 const connection = init();
 
@@ -41,6 +43,8 @@ bySidoPer(app, connection);
 bySidoOverPer50(app, connection);
 byDay7(app, connection);
 byMonth6(app, connection);
+company(app, connection);
+vaccineInfo(app, connection);
 
 app.listen(app.get('port'), () => {
   console.log('Port : ' + app.get('port'));
