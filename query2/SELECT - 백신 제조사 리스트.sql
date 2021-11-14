@@ -1,0 +1,2 @@
+SELECT DISTINCT company
+FROM V_INFO;

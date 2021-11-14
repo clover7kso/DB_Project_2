@@ -1,0 +1,4 @@
+SELECT U.sido, COUNT(inject_date) / COUNT(*) * 100 AS 접종률
+FROM USER U LEFT OUTER JOIN INJECTION I ON U.ssn = I.ssn
+GROUP BY U.sido
+HAVING 접종률 > 50;

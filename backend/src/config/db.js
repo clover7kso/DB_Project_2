@@ -1,22 +1,21 @@
 import mysql from 'mysql';
 
-export function init(){
+export function init() {
   return mysql.createConnection({
     host: 'localhost',
-    port: '3306', 
+    port: '3306',
     user: 'root',
     password: '0000',
-    database: 'vaccine_erp'
-  })
-};
+    database: 'DB',
+  });
+}
 
 export function tryConnect(con) {
-  con.connect((err) =>{
+  con.connect((err) => {
     if (err) {
       console.error('mysql connection error :' + err);
     } else {
       console.info('mysql is connected successfully.');
     }
-  })
+  });
 }
-

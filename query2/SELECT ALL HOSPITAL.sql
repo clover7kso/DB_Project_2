@@ -1,0 +1,3 @@
+use DB;
+SELECT *
+FROM HOSPITAL;
