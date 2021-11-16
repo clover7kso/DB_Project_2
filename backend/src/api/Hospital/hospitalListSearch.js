@@ -6,7 +6,7 @@ export default async (app, connection) => {
     console.log(si);
     console.log(sido);
     await connection.query(
-      'SELECT orgnm, sido, si FROM hospital WHERE orgnm LIKE ? AND si = ? AND sido = ? ORDER BY orgnm LIMIT 20 OFFSET ?',
+      'SELECT orgcd, orgnm, sido, si FROM hospital WHERE orgnm LIKE ? AND si = ? AND sido = ? ORDER BY orgnm LIMIT 20 OFFSET ?',
       [orgnm, si, sido, Number(offset)],
       (error, data) => {
         if (error) console.log(error);

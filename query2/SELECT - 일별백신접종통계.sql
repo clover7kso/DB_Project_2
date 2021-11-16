@@ -1,4 +1,1 @@
-SELECT inject_date, COUNT(*)
-FROM INJECTION
-WHERE TIMESTAMPDIFF(DAY, now(), inject_date) < 7 AND inject_date IS NOT NULL
-GROUP BY inject_date;
+SELECT YEAR (inject_date) AS y_date, MONTH (inject_date) AS m_date, DAY(inject_date) AS d_date, COUNT(*) FROM INJECTION WHERE inject_date IS NOT NULL GROUP BY inject_date;
