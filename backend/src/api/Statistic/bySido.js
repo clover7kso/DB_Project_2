@@ -1,7 +1,7 @@
 export default async (app, connection) => {
   app.get('/bySido', async (req, res, next) => {
     await connection.query(
-      'SELECT H.sido, COUNT(*) FROM HOSPITAL H NATURAL JOIN INJECTION I GROUP BY H.sido;',
+      'WITH bysido as (SELECT H.sido, COUNT(*) AS COUNT FROM INJECTION I LEFT JOIN HOSPITAL H ON H.orgcd=I.orgcd GROUP BY H.sido), Hsido as (SELECT DISTINCT sido FROM HOSPITAL) SELECT Hsido.sido, COUNT FROM bysido RIGHT JOIN Hsido ON bysido.sido=Hsido.sido;',
       [],
       (error, data) => {
         if (error) console.log(error);
