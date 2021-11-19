@@ -39,8 +39,8 @@ export default (app, connection) => {
           v.hldyYn,
           v.lunchSttTm,
           v.lunchEndTm,
-          v.sttTm,
-          v.endTm,
+          "00:09:00",
+          "00:18:00",
         ],
       );
     });

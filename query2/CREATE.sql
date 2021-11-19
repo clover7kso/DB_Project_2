@@ -72,7 +72,7 @@ CREATE TABLE HOSPITAL (
     lunchEndTm VARCHAR(64),							#기준일자 점심종료시간
     sttTm TIME default "09:00:00" NOT NULL,			#기준일자 오픈시간
     endTm TIME default "18:00:00" NOT NULL,			#기준일자 마감시간
-    maxCapacityperhour INT default 0				#시간당 접종가능인원수
+    maxCapacityperhour INT default 10				#시간당 접종가능인원수
 );
 CREATE TABLE INJECTION (
     number VARCHAR(7) PRIMARY KEY NOT NULL,			#일련번호
