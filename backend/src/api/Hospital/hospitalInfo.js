@@ -7,8 +7,22 @@ export default async (app, connection) => {
         (error, data) => {
           if (error) console.log(error);
           const result = data;
-          console.log(result);
-          return res.send(result);
+          connection.query(
+            'SELECT name, COUNT(*) FROM VACCINE GROUP BY name;',
+            (error1, data1) => {
+              if (error1) console.log(error1);
+              const result1 = data1;
+              console.log(result1);
+              result[0].canSelectVaccine = {
+                "화이자" : result1[3]['COUNT(*)'],
+                "모더나" : result1[0]['COUNT(*)'],
+                "아스트라제네카" : result1[1]['COUNT(*)'],
+                "얀센" : result1[2]['COUNT(*)']
+              }
+              console.log(result);
+              return res.send(result);
+            }
+          )
         },
       );
     });
