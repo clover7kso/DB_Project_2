@@ -8,7 +8,7 @@ export default async (app, connection) => {
           if (error) console.log(error);
           const result = data;
           connection.query(
-            'SELECT name, COUNT(*) FROM VACCINE GROUP BY name;',
+            'SELECT name, COUNT(*) FROM VACCINE V WHERE NOT EXISTS(SELECT number FROM INJECTION I WHERE I.number = V.number) GROUP BY name;',
             (error1, data1) => {
               if (error1) console.log(error1);
               const result1 = data1;
