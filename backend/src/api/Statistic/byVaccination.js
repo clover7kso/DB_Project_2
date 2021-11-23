@@ -8,14 +8,14 @@ export default async (app, connection) => {
           const result = data;
           var vaccination = {
               "미접종자" : 0,
-              "1차 접종자" : 0,
-              "접종 완료자" : 0
+              "접종_1차" : 0,
+              "접종_완료자" : 0
           }
           result.map((v) => {
               if(v.ssn !== null && v.count === 2){
-                  vaccination['접종 완료자']++;
+                  vaccination['접종_완료자']++;
               } else if(v.ssn !== null && v.count === 1){
-                  vaccination['1차 접종자']++;
+                  vaccination['접종_1차']++;
               } else{
                   vaccination['미접종자']++;
               } 
