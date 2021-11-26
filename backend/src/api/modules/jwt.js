@@ -36,6 +36,6 @@ export const verify = (token) => {
       console.log('invalid token');
       return TOKEN_INVALID;
     }
-  }
+  }    
   return decoded;
 };

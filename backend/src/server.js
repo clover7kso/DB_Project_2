@@ -22,6 +22,7 @@ import injectionInfo from './api/User/Mypage/injectionInfo.js';
 import updateUser from './api/User/Mypage/updateUser.js';
 import updateDoctor from './api/Doctor/Mypage/updateDoctor.js';
 import userInfo from './api/User/Mypage/userInfo.js';
+import auth from './api/modules/auth.js';
 import doctorInfo from './api/Doctor/Mypage/doctorInfo.js';
 import injectionTable from './api/Doctor/injectionTable.js';
 import updateInjectionTable from './api/Doctor/updateInjectionTable.js';
@@ -42,6 +43,8 @@ app.use(
     limit: '1000mb',
   }),
 );
+
+const router = express.Router();
 
 app.set('port', process.env.PORT || 4000);
 
@@ -65,7 +68,7 @@ company(app, connection);
 vaccineInfo(app, connection);
 updateUser(app, connection);
 updateDoctor(app, connection);
-userInfo(app, connection);
+userInfo(app, router, connection);
 doctorInfo(app, connection);
 injectionTable(app, connection);
 updateInjectionTable(app, connection);

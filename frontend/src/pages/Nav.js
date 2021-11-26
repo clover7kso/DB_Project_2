@@ -12,7 +12,7 @@ import {
 } from '../components/Card';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { getRefreshTokenFromCookie } from '../components/Auth';
+import { getTokenFromCookie } from '../components/Auth';
 
 const Body = styled.div`
   position: fixed;
@@ -54,7 +54,7 @@ const Tab = (title, url, page, setPage) => {
 
 //홈페이지 로고, 통계, 마이페이지, 로그인
 const Nav = ({ history }) => {
-  const refreshToken = getRefreshTokenFromCookie();
+  const token = getTokenFromCookie();
   const [page, setPage] = useState('/');
   return (
     <Body>

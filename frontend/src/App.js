@@ -11,6 +11,7 @@ import Nav from './pages/Nav';
 import styled from 'styled-components';
 import DoctorLogin from './pages/DoctorLogin';
 import DoctorRegister from './pages/DoctorRegister';
+import MyPage from './pages/MyPage';
 
 const Body = styled.div`
   display: flex;
@@ -41,6 +42,7 @@ class App extends Component {
             <Route path="/Statistic" component={Statistic} />
             <Route path="/DoctorLogin" component={DoctorLogin} />
             <Route path="/DoctorRegister" component={DoctorRegister} />
+            <Route path="/MyPage" component={MyPage} />
           </Switch>
         </Col>
       </Body>
