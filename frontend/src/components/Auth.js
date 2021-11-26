@@ -40,3 +40,19 @@ export const handleLogin = async (id, pw) => {
     return false;
   }
 };
+
+export const handleDoctorLogin = async (id, pw) => {
+  const res = await axios.post('http://localhost:4000/doctorLogin', {
+    id: id,
+    pw: pw,
+  });
+  if (res.data) {
+    console.log('로그인 성공!');
+    setTokenToCookie(res.data.token); // cookie에 refresh_token 저장
+    setInfoToCookie(res.data); // cookie에 refresh_token 저장
+    return true;
+  } else {
+    console.log('로그인 실패');
+    return false;
+  }
+};

@@ -1,4 +1,4 @@
-import { sign } from "../modules/jwt.js";
+import { sign } from '../modules/jwt.js';
 
 export default (app, connection) => {
   app.post('/doctorLogin', (req, res, next) => {
@@ -13,7 +13,7 @@ export default (app, connection) => {
         if(result == true) {
           const jwtToken = await sign(id, pw);
           jwtToken.name = data[0].name;
-          jwtToken.type = "doctor";
+          jwtToken.type = 'doctor';
           console.log(jwtToken);
           res.send(jwtToken);
         } else {
@@ -24,4 +24,3 @@ export default (app, connection) => {
     );
   });
 };
-  

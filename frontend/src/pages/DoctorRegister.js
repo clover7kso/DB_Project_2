@@ -13,9 +13,9 @@ import {
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
-const register = async (number, password, name, orgcd) => {
+const register = async (id, password, name, orgcd) => {
   const res = await axios.post('http://localhost:4000/doctorRegister', {
-    number: number,
+    id: id,
     pw: password,
     name: name,
     orgcd: orgcd,
@@ -33,9 +33,9 @@ const register = async (number, password, name, orgcd) => {
 
   return result;
 };
-//number, pw, name, orgcd
+//id, pw, name, orgcd
 const DoctorRegister = ({ history }) => {
-  const [number, setNumber] = useState('');
+  const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [orgcd, setOrgcd] = useState('');
@@ -53,7 +53,7 @@ const DoctorRegister = ({ history }) => {
             <CardInput
               placeholder="'-'를 제외한 8자리 숫자"
               type="text"
-              onChange={(e) => setNumber(e.target.value)}
+              onChange={(e) => setId(e.target.value)}
             />
           </CardFieldset>
 
@@ -88,7 +88,7 @@ const DoctorRegister = ({ history }) => {
             <CardButton
               type="button"
               onClick={async (e) => {
-                if (await register(number, password, name, orgcd))
+                if (await register(id, password, name, orgcd))
                   history.push('/login');
               }}
             >
