@@ -12,7 +12,7 @@ import {
 } from '../components/Card';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { getTokenFromCookie } from '../components/Auth';
+import { getInfoFromCookie, logout } from '../components/Auth';
 
 const Body = styled.div`
   position: fixed;
@@ -48,7 +48,7 @@ const Tab = (title, url, page, setPage) => {
 
 //홈페이지 로고, 통계, 마이페이지, 로그인
 const Nav = ({ history }) => {
-  const token = getTokenFromCookie();
+  const info = getInfoFromCookie();
   const [page, setPage] = useState('/');
   return (
     <Body>
@@ -57,9 +57,30 @@ const Nav = ({ history }) => {
           <CardHeading>코로나 ERP</CardHeading>
         </CardHeader>
       </CardWrapper>
+      {info ? (
+        <CardWrapper>
+          <CardBody style={{ marginTop: 32 }}>
+            <CardTitle>
+              {info.name + (info.type !== 'user' ? ' 의사선생' : '')}님
+              환영합니다!
+            </CardTitle>
+            <CardTitle
+              style={{ cursor: 'pointer' }}
+              onClick={() => {
+                logout();
+                window.location.reload();
+              }}
+            >
+              로그아웃
+            </CardTitle>
+          </CardBody>
+        </CardWrapper>
+      ) : null}
       <CardWrapper>
         <CardBody style={{ marginTop: 32 }}>
-          {Tab('로그인', '/Login', page, setPage)}
+          {info
+            ? Tab('마이페이지', '/MyPage', page, setPage)
+            : Tab('로그인', '/Login', page, setPage)}
           {Tab('홈', '/', page, setPage)}
           {Tab('병원예약', '/Hospital', page, setPage)}
           {Tab('접종통계', '/Statistic', page, setPage)}
