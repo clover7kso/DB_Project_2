@@ -19,6 +19,7 @@ const Table = styled.table`
   border-color:'white';
   display:'flex';
   width:80%;
+  margin-bottom:10px;
 `;
 
 const T_Col = styled.tr`
@@ -46,6 +47,12 @@ const T_RowTitle = styled.th`
   width:70%;
 `;
 
+const DateTransForm = (raw_date)=>{
+    const d_t = raw_date.split('T');
+    const day = d_t[0].split('-');
+    const time = d_t[1].split(':');
+    return day[0]+'년 '+day[1]+'월 '+day[2]+'일 / '+time[0]+'시 '+time[1]+'분';
+}
 class DataLine extends React.Component{
     render(){
         var name = this.props.title;
@@ -59,12 +66,45 @@ class DataLine extends React.Component{
     }
 }
 
+class InjectResult extends React.Component{
+    render(){
+        const count = this.props.injCount;
+        const value = this.props.value;
+
+        const inj = value.inject_date;
+        const rsv = value.reservation_time;
+        const vname = value.Vname;
+        const org = value.orgnm;
+        //const number = value.number;
+
+        var i_str = DateTransForm(inj);
+        var r_str = DateTransForm(rsv);
+
+        //var inject_date = inj.split('T').split('');
+
+        return(
+            <Table>
+                <T_Col>
+                    <T_RowTitle colSpan="2">{count}차 접종 {inj!==null?'완료':'예정'}</T_RowTitle>
+                </T_Col>
+                <DataLine title="접종 기관" value={org}/>
+                <DataLine title="백신명" value={vname}/>
+                {/*<DataLine title="백신 일련번호" value={number}/>*/}
+                <DataLine title="백신 예약일자" value={r_str}/>
+                {inj===null?'':<DataLine title="백신 접종일자" value={i_str}/>}
+            </Table>
+        );
+    }
+}
+
 export class MyPageComp extends React.Component {
   render() {
-    var Data = this.props.data;
+    const Data = this.props.data;
+    const injData = this.props.inj;
     console.log(Data);
+    console.log(injData);
 
-    if(Data!==undefined){
+    if(Data!==undefined && injData!==undefined){
     return (
       <Col>
         <CardWrapper style={{width:'100%'}}>
@@ -90,6 +130,19 @@ export class MyPageComp extends React.Component {
             <CardFieldset>
               <CardLink link="/UserUpdate">정보 수정을 원하시나요?</CardLink>
             </CardFieldset>
+          </CardBody>
+        </CardWrapper>
+
+        <CardWrapper style={{width:'100%'}}>
+          <CardHeader>
+            <CardHeading>접종 기록</CardHeading>
+          </CardHeader>
+          <CardBody style={{width:'100%'}}>
+            
+            {injData.map((inj,index) => {
+                return <InjectResult injCount={index+1} value={inj}/> ;
+            })}
+
           </CardBody>
         </CardWrapper>
       </Col>
