@@ -133,6 +133,11 @@ const Register = ({ history }) => {
           <CardFieldset>
             <CardLink to="/login">이미 계정이 있으신가요?</CardLink>
           </CardFieldset>
+
+          <CardFieldset>
+            <CardLink to="/DoctorRegister">접종기관 의사이신가요?</CardLink>
+          </CardFieldset>
+          
         </CardBody>
       </CardWrapper>
     </div>

@@ -75,6 +75,11 @@ const Login = ({ history }) => {
           <CardFieldset>
             <CardLink to="/register">계정이 없으신가요?</CardLink>
           </CardFieldset>
+
+          <CardFieldset>
+            <CardLink to="/DoctorLogin">접종기관 의사이신가요?</CardLink>
+          </CardFieldset>
+
         </CardBody>
       </CardWrapper>
     </div>
