@@ -34,7 +34,7 @@ const login = async (id, pw) => {
   return res.data;
 };
 
-const Login = ({ history }) => {
+const DoctorLogin = ({ history }) => {
   const [id, setID] = useState('');
   const [pw, setPassword] = useState('');
 
@@ -84,4 +84,4 @@ const Login = ({ history }) => {
   );
 };
 
-export default Login;
+export default DoctorLogin;
