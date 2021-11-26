@@ -21,7 +21,7 @@ export const CardTitle = styled.div`
   padding: 7px 0;
   width: 100%;
   font-weight: bold;
-  font-size: ${(props) => props.fontSize || '14px' };
+  font-size: ${(props) => props.fontSize || '14px'};
   color: #2a2a2a;
 `;
 
@@ -46,8 +46,6 @@ export const CardFieldset = styled.fieldset`
   & + & {
     margin-top: 24px;
   }
-
-
 `;
 
 export const CardInput = styled.input`
@@ -116,56 +114,6 @@ export const CardButton = styled.button`
   }
 `;
 
-export const CardVaccineButton = styled.button`
-  ${(props) => {
-    if(props.cond){
-      return css`
-      display:inline-block
-      width: 100%%;
-      padding: 12px 0;
-      font-family: inherit;
-      font-size: 14px;
-      font-weight: 700;
-      color: #fff;
-      background-color : #4AB34A;
-      border: 0;
-      border-radius: 20px;
-      box-shadow: 0 10px 10px rgba(0, 0, 0, 0.08);
-      cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
-      outline: 0;
-      &:hover {
-        background-color : #6DD66D;
-        box-shadow: 0 15px 15px rgba(0, 0, 0, 0.16);
-        transform: translate(0, -5px);
-      }
-      `;
-    }
-    else{
-      return css`
-      display:inline-block
-      width: 100%%;
-      padding: 12px 0;
-      font-family: inherit;
-      font-size: 14px;
-      font-weight: 700;
-      color: #fff;
-      background-color : #828282;
-      border: 0;
-      border-radius: 20px;
-      box-shadow: 0 10px 10px rgba(0, 0, 0, 0.08);
-      cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
-      outline: 0;
-      &:hover {
-        background-color : #828282;
-        box-shadow: 0 15px 15px rgba(0, 0, 0, 0.16);
-        transform: translate(0, -5px);
-      }
-      `;
-    }
-  }}
-`;
 export const CardLink = styled(Link)`
   display: inline-block;
   font-size: 12px;
