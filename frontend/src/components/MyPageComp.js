@@ -49,7 +49,7 @@ const T_RowTitle = styled.th`
 `;
 
 const DateTransForm = (raw_date)=>{
-    const d_t = raw_date.split('T');
+    const d_t = raw_date.split(' ');
     const day = d_t[0].split('-');
     const time = d_t[1].split(':');
     return day[0]+'년 '+day[1]+'월 '+day[2]+'일 / '+time[0]+'시 '+time[1]+'분';
