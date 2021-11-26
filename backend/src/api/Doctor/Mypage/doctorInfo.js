@@ -5,7 +5,7 @@ export default async (app, connection) => {
     console.log(req.query);
     const { id } = req.query;
     await connection.query(
-      'SELECT * FROM DOCTOR WHERE id=?;',
+      'SELECT id, pw, name, orgnm, orgTlno, orgZipaddr, lunchSttTm, lunchEndTm, sttTm, endTm FROM DOCTOR D JOIN HOSPITAL H WHERE id=? AND D.orgcd=H.orgcd;',
       [id],
       (error, data) => {
         if (error) console.log(error);
