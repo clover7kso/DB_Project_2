@@ -22,7 +22,6 @@ import injectionInfo from './api/User/Mypage/injectionInfo.js';
 import updateUser from './api/User/Mypage/updateUser.js';
 import updateDoctor from './api/Doctor/Mypage/updateDoctor.js';
 import userInfo from './api/User/Mypage/userInfo.js';
-import auth from './api/modules/auth.js';
 import doctorInfo from './api/Doctor/Mypage/doctorInfo.js';
 import injectionTable from './api/Doctor/injectionTable.js';
 import updateInjectionTable from './api/Doctor/updateInjectionTable.js';

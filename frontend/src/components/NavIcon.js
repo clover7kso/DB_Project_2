@@ -13,6 +13,7 @@ const ImgSelItems = {
   '/Login': <img src={sel_per} width={24} height={24} alt="icon" />,
   '/': <img src={sel_home} width={24} height={24} alt="icon" />,
   '/Hospital': <img src={sel_inject} width={24} height={24} alt="icon" />,
+  '/PatientInfo': <img src={sel_inject} width={24} height={24} alt="icon" />,
   '/Statistic': <img src={sel_statistic} width={24} height={24} alt="icon" />,
 };
 const ImgUnselItems = {
@@ -20,6 +21,7 @@ const ImgUnselItems = {
   '/Login': <img src={unsel_per} width={24} height={24} alt="icon" />,
   '/': <img src={unsel_home} width={24} height={24} alt="icon" />,
   '/Hospital': <img src={unsel_inject} width={24} height={24} alt="icon" />,
+  '/PatientInfo': <img src={unsel_inject} width={24} height={24} alt="icon" />,
   '/Statistic': <img src={unsel_statistic} width={24} height={24} alt="icon" />,
 };
 

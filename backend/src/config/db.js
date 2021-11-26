@@ -7,6 +7,7 @@ export function init() {
     user: 'root',
     password: '0000',
     database: 'db',
+    dateStrings: 'date'
   });
 }
 
