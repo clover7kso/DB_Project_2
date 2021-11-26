@@ -20,7 +20,9 @@ import company from './api/V_info/company.js';
 import vaccineInfo from './api/V_info/vaccineInfo.js';
 import injectionInfo from './api/User/Mypage/injectionInfo.js';
 import updateUser from './api/User/Mypage/updateUser.js';
+import updateDoctor from './api/User/Mypage/updateDoctor.js';
 import userInfo from './api/User/Mypage/userInfo.js';
+import doctorInfo from './api/User/Mypage/doctorInfo.js';
 import reserveVaccine from './api/Vaccine/reserveVaccine.js';
 
 const connection = init();
@@ -59,7 +61,9 @@ byVaccination(app, connection);
 company(app, connection);
 vaccineInfo(app, connection);
 updateUser(app, connection);
+updateDoctor(app, connection);
 userInfo(app, connection);
+doctorInfo(app, connection);
 reserveVaccine(app, connection);
 
 app.listen(app.get('port'), () => {
