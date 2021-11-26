@@ -76,12 +76,13 @@ const DoctorLogin = ({ history }) => {
           </CardFieldset>
 
           <CardFieldset>
-            <CardLink to="/login">백신 접종자이신가요?</CardLink>
+            <CardLink to="/DoctorRegister">계정이 없으신가요?</CardLink>
           </CardFieldset>
 
           <CardFieldset>
-            <CardLink to="/DoctorRegister">계정이 없으신가요?</CardLink>
+            <CardLink to="/login">접종기관 의사가 아니신가요?</CardLink>
           </CardFieldset>
+
         </CardBody>
       </CardWrapper>
     </div>
