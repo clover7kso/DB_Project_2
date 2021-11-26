@@ -13,7 +13,10 @@ import {
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-const Body = styled.div``;
+const Body = styled.div`
+  position: fixed;
+  width: 20%;
+`;
 
 //홈페이지 로고, 통계, 마이페이지, 로그인
 const Nav = ({ history }) => {
