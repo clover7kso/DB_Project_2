@@ -9,6 +9,8 @@ import Manager from './pages/Manager';
 import Statistic from './pages/Statistic';
 import Nav from './pages/Nav';
 import styled from 'styled-components';
+import DoctorLogin from './pages/DoctorLogin';
+import DoctorRegister from './pages/DoctorRegister';
 
 const Body = styled.div`
   display: flex;
