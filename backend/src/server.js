@@ -18,7 +18,8 @@ import byMonth from './api/Statistic/byMonth.js';
 import byVaccination from './api/Statistic/byVaccination.js';
 import company from './api/V_info/company.js';
 import vaccineInfo from './api/V_info/vaccineInfo.js';
-import injectionInfo from './api/User/injectionInfo.js';
+import injectionInfo from './api/User/Mypage/injectionInfo.js';
+import updateUser from './api/User/Mypage/updateUser.js';
 import reserveVaccine from './api/Vaccine/reserveVaccine.js';
 
 const connection = init();
@@ -56,6 +57,7 @@ byMonth(app, connection);
 byVaccination(app, connection);
 company(app, connection);
 vaccineInfo(app, connection);
+updateUser(app, connection);
 reserveVaccine(app, connection);
 
 app.listen(app.get('port'), () => {
