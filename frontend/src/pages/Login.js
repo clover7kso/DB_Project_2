@@ -20,7 +20,11 @@ const login = async (id, pw) => {
       '로그인이 성공하였습니다.',
       '국민 건강을 위하여 백신접종은 필수입니다.',
       'success',
-    );
+    ).then((result) => {
+      if (result.isConfirmed) {
+        window.location.reload();
+      }
+    });
   } else {
     Swal.fire(
       '아이디 또는 비밀번호가 틀립니다.',
