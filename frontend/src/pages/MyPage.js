@@ -14,15 +14,19 @@ import {
   CardButton,
 } from '../components/Card';
 
-const MyPage = async ({ history }) => {
+const MyPage = ({ history }) => {
   const token = getTokenFromCookie();
-  console.log(token);
-  const res = await axios.get('http://localhost:4000/userInfo', {
-    headers: {
-      token: token,
-    },
-  });
-  console.log(res.data);
+  const [userInfo, setUserInfo] = useState();
+  useEffect(() => {
+    axios
+      .get('http://localhost:4000/userInfo', {
+        headers: {
+          token: token,
+        },
+      })
+      .then(({ data }) => setUserInfo(data[0]));
+  }, []);
+  console.log(userInfo);
   return <div>MyPage</div>;
 };
 
