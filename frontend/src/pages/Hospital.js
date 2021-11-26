@@ -1,71 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
-import {
-  CardWrapper,
-  CardHeader,
-  CardHeading,
-  CardBody,
-  CardFieldset,
-  CardInput,
-  CardTitle,
-  CardSelect,
-  CardSelectOption,
-  CardButton,
-} from '../components/Card';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import InfiniteScroll from 'react-infinite-scroll-component';
 import styled from 'styled-components';
-import { ReactComponent as arrow_right } from '../imgs/arrow_left.svg';
-import 'react-modern-calendar-datepicker/lib/DatePicker.css';
-import { Calendar } from 'react-modern-calendar-datepicker';
 import HInfo from '../components/HInfo';
 import HList from '../components/HList';
 import HSearch from '../components/HSearch';
 
 const Body = styled.div``;
-
-const ItemBody = styled.div`
-  padding: 32px 32px 0px;
-  display: flex;
-  flex-direction: horizontal;
-`;
-
-const ItemMain = styled.div`
-  width: 100%;
-`;
-
-const ItemAddr = styled.div`
-  padding-bottom: 8px;
-  text-align: left;
-  width: 100%;
-  font-size: 12px;
-  color: #2c2c2c;
-`;
-
-const ItemTitle = styled.div`
-  text-align: left;
-  width: 100%;
-  font-size: 16px;
-  color: #3a3a3a;
-`;
-
-const ItemIcon = styled(arrow_right)``;
-
-const ItemButton = styled.button`
-  width: 100%;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.2s;
-
-  &:hover {
-    background: #e2e2e2;
-  }
-  &:active {
-    background: #c8c8c8;
-  }
-`;
 
 const Hospital = ({ history }) => {
   var [orgnm, setOrgnm] = useState('');
@@ -135,14 +75,6 @@ const Hospital = ({ history }) => {
         });
     }
   }, [hcode]);
-
-  const defaultValue = {
-    year: 2019,
-    month: 10,
-    day: 5,
-  };
-
-  const [selectedDay, setSelectedDay] = useState(defaultValue);
 
   return (
     <Body>
