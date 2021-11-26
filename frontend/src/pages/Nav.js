@@ -23,14 +23,8 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
-const Selected = styled.div`
-  background-color: 'black';
-`;
-
 const Tab = (title, url, page, setPage) => {
   console.log(url === page);
-  console.log('u:' + url);
-  console.log('p:' + page);
   return page === url ? (
     <StyledLink
       to={url}
@@ -65,7 +59,7 @@ const Nav = ({ history }) => {
       </CardWrapper>
       <CardWrapper>
         <CardBody style={{ marginTop: 32 }}>
-          {Tab('로그인하여 접종예약', '/Login', page, setPage)}
+          {Tab('로그인', '/Login', page, setPage)}
           {Tab('홈', '/', page, setPage)}
           {Tab('병원예약', '/Hospital', page, setPage)}
           {Tab('접종통계', '/Statistic', page, setPage)}

@@ -4,15 +4,15 @@ export default (app, connection) => {
   app.post('/login', (req, res, next) => {
     const { id, pw } = req.body;
     connection.query(
-      'SELECT COUNT(id) as cnt, name FROM user WHERE id = ? and pw = ?',
+      'SELECT id, name FROM user WHERE id = ? and pw = ?',
       [id, pw],
       async (error, data) => {
         if (error) throw error;
-        const result = data[0].cnt === 1 ? true : false;
+        const result = data ? true : false;
         if (result == true) {
           const jwtToken = await sign(id, pw);
           jwtToken.name = data[0].name;
-          jwtToken.type = "user";
+          jwtToken.type = 'user';
           console.log(jwtToken);
           res.send(jwtToken);
         } else {
