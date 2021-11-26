@@ -40,7 +40,7 @@ VALUES
 
 #HOSPITAL테이블은 API를 통한 데이터 INSERT
 
-INSERT DOCTOR(number, pw, name, orgcd)
+INSERT DOCTOR(id, pw, name, orgcd)
 VALUES
 (11111111, 'aaaaaaa1', '안철수', '21303568'),
 (22222222, 'aaaaaaa2', '김상은', '35323175'),

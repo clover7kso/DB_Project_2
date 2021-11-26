@@ -23,17 +23,22 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
+const Sel = styled.div`
+  background-color: blue;
+`;
 const Tab = (title, url, page, setPage) => {
   console.log(url === page);
   return page === url ? (
-    <StyledLink
-      to={url}
-      onClick={() => {
-        setPage(url);
-      }}
-    >
-      <CardTitle>{title}</CardTitle>
-    </StyledLink>
+    <Sel>
+      <StyledLink
+        to={url}
+        onClick={() => {
+          setPage(url);
+        }}
+      >
+        <CardTitle>{title}</CardTitle>
+      </StyledLink>
+    </Sel>
   ) : (
     <StyledLink
       to={url}
