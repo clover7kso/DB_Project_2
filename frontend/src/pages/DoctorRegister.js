@@ -34,7 +34,7 @@ const register = async (number, password, name, orgcd) => {
   return result;
 };
 //number, pw, name, orgcd
-const Register = ({ history }) => {
+const DoctorRegister = ({ history }) => {
   const [number, setNumber] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
