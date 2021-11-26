@@ -14,6 +14,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { getInfoFromCookie, logout } from '../components/Auth';
 import { NavIcon } from '../components/NavIcon';
+import base_icon from '../imgs/base_icon.png';
 
 const Body = styled.div`
   position: fixed;
@@ -24,11 +25,17 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
+const TitleWrapper = styled.div`
+  display: flex;
+  flex-direction: horizontal;
+  align-items: center;
+  justify-content: center;
+`;
 const Sel = styled.div`
   display: flex;
   flex-direction: horizontal;
   align-items: center;
-  background-color: #424242;
+  background-color: #e5195f;
   padding-left: 32px;
   padding-right: 32px;
   padding-top: 8px;
@@ -85,7 +92,18 @@ const Nav = ({ history }) => {
     <Body>
       <CardWrapper style={{ paddingTop: 0, paddingBottom: 0 }}>
         <CardHeader style={{ paddingTop: 12, paddingBottom: 12 }}>
-          <CardHeading>코로나 ERP</CardHeading>
+          <TitleWrapper>
+            <img src={base_icon} width={32} height={32} alt="icon" />
+            <CardHeading
+              style={{
+                color: '#e5195f',
+                paddingLeft: '12px',
+                paddingTop: '4px',
+              }}
+            >
+              코로나 ERP
+            </CardHeading>
+          </TitleWrapper>
         </CardHeader>
       </CardWrapper>
       {info ? (

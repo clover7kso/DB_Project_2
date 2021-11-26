@@ -7,7 +7,6 @@ import unsel_home from '../imgs/unsel_home.png';
 import unsel_inject from '../imgs/unsel_inject.png';
 import unsel_per from '../imgs/unsel_per.png';
 import unsel_statistic from '../imgs/unsel_statistic.png';
-import styled from 'styled-components';
 
 const ImgSelItems = {
   '/MyPage': <img src={sel_per} width={24} height={24} alt="icon" />,
