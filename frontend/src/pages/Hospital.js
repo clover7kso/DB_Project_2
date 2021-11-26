@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   CardWrapper,
   CardHeader,
@@ -130,6 +130,15 @@ const Hospital = ({ history }) => {
   };
 
   var [orginfo, setOrginfo] = useState([]);
+  var [nine, setNine] = useState(0);
+  var [ten, setTen] = useState(0);
+  var [eleven, setEleven] = useState(0);
+  var [twelve, setTwelve] = useState(0);
+  var [one, setOne] = useState(0);
+  var [two, setTwo] = useState(0);
+  var [three, setThree] = useState(0);
+  var [four, setFour] = useState(0);
+  var [five, setFive] = useState(0);
   useEffect(() => {
     if (hcode !== '') {
       axios
@@ -137,10 +146,21 @@ const Hospital = ({ history }) => {
         .then(({ data }) => {
           setOrginfo(data);
         });
+      axios
+        .get('http://localhost:4000/hospitalReserve', { params: { orgcd : hcode, date : new Date() }})
+        .then(( tmdata ) => {
+          setNine(tmdata.data['09']);
+          setTen(tmdata.data['10']);
+          setEleven(tmdata.data['11']);
+          setTwelve(tmdata.data['12']);
+          setOne(tmdata.data['01']);
+          setTwo(tmdata.data['02']);
+          setThree(tmdata.data['03']);
+          setFour(tmdata.data['04']);
+          setFive(tmdata.data['05']);
+        });
     }
   }, [hcode]);
-
-  const [modal, setModal] = useState(false);
 
   return (
     <Body>
@@ -290,16 +310,16 @@ const Hospital = ({ history }) => {
                         {data.sttTm} ~ {data.endTm}
                       </td>
                     </tr>
-                    <td colSpan="2" align="center">
-                      <CardButton
-                        style={{ width: '40%' }}
-                        onClick={(e) => {
-                          setModal(true);
-                        }}
-                      >
-                        잔여백신 당일예약하기
-                      </CardButton>
-                    </td>
+                    <tr>
+                      09 : {nine};
+                    </tr>
+                    <tr>
+                      <td colSpan="2" align="center">
+                        <CardButton style = {{ width: '40%' }}>
+                          잔여백신 당일예약하기
+                        </CardButton>
+                      </td>
+                    </tr>
                   </table>
                 </CardFieldset>
               );
