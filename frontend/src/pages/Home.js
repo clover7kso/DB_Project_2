@@ -1,7 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import {
+  CardWrapper,
+  CardHeader,
+  CardHeading,
+  CardBody,
+  CardFieldset,
+  CardInput,
+  CardTitle,
+  CardSelect,
+  CardSelectOption,
+  CardButton,
+} from '../components/Card';
 
 const Home = ({ history }) => {
-  return <div>hi</div>;
+  return <div>Home</div>;
 };
 
 export default Home;
