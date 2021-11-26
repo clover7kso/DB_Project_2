@@ -13,9 +13,11 @@ import bySido from './api/Statistic/bySido.js';
 import bySidoPer from './api/Statistic/bySidoPer.js';
 import byDay from './api/Statistic/byDay.js';
 import byMonth from './api/Statistic/byMonth.js';
+import byVaccination from './api/Statistic/byVaccination.js';
 import company from './api/V_info/company.js';
 import vaccineInfo from './api/V_info/vaccineInfo.js';
 import injectionInfo from './api/User/injectionInfo.js';
+import reserveVaccine from './api/Vaccine/reserveVaccine.js';
 
 const connection = init();
 
@@ -47,8 +49,10 @@ bySido(app, connection);
 bySidoPer(app, connection);
 byDay(app, connection);
 byMonth(app, connection);
+byVaccination(app, connection);
 company(app, connection);
 vaccineInfo(app, connection);
+reserveVaccine(app, connection);
 
 app.listen(app.get('port'), () => {
   console.log('Port : ' + app.get('port'));
