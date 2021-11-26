@@ -2,6 +2,8 @@ import express from 'express';
 import { init } from './config/db.js';
 import login from './api/User/login.js';
 import register from './api/User/register.js';
+import doctorRegister from './api/User/doctorRegister.js';
+import doctorLogin from './api/User/doctorLogin.js';
 import cors from 'cors';
 import hospitalInfo from './api/Hospital/hospitalInfo.js';
 import hospitalUpdate from './api/Hospital/hospitalUpdate.js';
@@ -38,6 +40,8 @@ app.set('port', process.env.PORT || 4000);
 
 login(app, connection);
 register(app, connection);
+doctorLogin(app, connection);
+doctorRegister(app, connection);
 injectionInfo(app, connection);
 hospitalInfo(app, connection);
 hospitalUpdate(app, connection);

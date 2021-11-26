@@ -100,7 +100,8 @@ END$$
 DELIMITER ;
 
 CREATE TABLE DOCTOR (
-    number INT PRIMARY KEY NOT NULL,				#의사면허번호
+    number INT PRIMARY KEY NOT NULL,				#의사면허번호 - 의사 로그인 id
+    pw VARCHAR(21) NOT NULL,						#비밀번호
     name varchar(100) NOT NULL,						#의사 이름
     orgcd VARCHAR(64) NOT NULL,						#병원테이블 id
     FOREIGN KEY (orgcd) REFERENCES HOSPITAL(orgcd)
@@ -112,6 +113,9 @@ BEGIN
 IF (NEW.number REGEXP '^[0-9]{8}$') = 0 THEN 
   SIGNAL SQLSTATE '40001'
      SET MESSAGE_TEXT = "의사 면허번호는 차례대로 숫자8자리로 구성되어야한다.";
+ELSEIF (NEW.pw REGEXP '(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9]{8,20}') = 0 THEN 
+  SIGNAL SQLSTATE '40002'
+     SET MESSAGE_TEXT = "비밀번호는 8~20자, 최소 하나의 문자 및 하나의 숫자를 포함해야 합니다.";     
 END IF; 
 END$$
 DELIMITER ;

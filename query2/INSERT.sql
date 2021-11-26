@@ -40,14 +40,14 @@ VALUES
 
 #HOSPITAL테이블은 API를 통한 데이터 INSERT
 
-INSERT DOCTOR(number, name, orgcd)
+INSERT DOCTOR(number, pw, name, orgcd)
 VALUES
-(11111111, '안철수', '21303568'),
-(22222222, '김상은', '35323175'),
-(33333333, '돌팔이', '21345970'),
-(44444444, '김성생', '35306611'),
-(55555555, '화타', '33316228'),
-(66666666, '김지성', '21311072');
+(11111111, 'aaaaaaa1', '안철수', '21303568'),
+(22222222, 'aaaaaaa2', '김상은', '35323175'),
+(33333333, 'aaaaaaa3', '돌팔이', '21345970'),
+(44444444, 'aaaaaaa4', '김성생', '35306611'),
+(55555555, 'aaaaaaa5', '화타', '33316228'),
+(66666666, 'aaaaaaa6', '김지성', '21311072');
 
 INSERT INJECTION(number, ssn, orgcd, inject_date, reservation_time)
 VALUES
