@@ -311,6 +311,9 @@ const Hospital = ({ history }) => {
                       </td>
                     </tr>
                     <tr>
+                      <td>
+                
+                        </td>
                       09 : {nine};
                     </tr>
                     <tr>
