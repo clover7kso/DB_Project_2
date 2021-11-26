@@ -1,8 +1,17 @@
 import React, { useState } from 'react';
+import {
+  CardWrapper,
+  CardHeader,
+  CardHeading,
+  CardBody,
+  CardFieldset,
+  CardInput,
+  CardButton,
+  CardLink,
+  CardTitle,
+} from '../components/Card';
 import Swal from 'sweetalert2';
 import axios from 'axios';
-
-import DoctorRegisterComp from '../components/DoctorRegisterComp';
 
 const register = async (number, password, name, orgcd) => {
   const res = await axios.post('http://localhost:4000/doctorRegister', {
@@ -32,10 +41,69 @@ const Register = ({ history }) => {
   const [orgcd, setOrgcd] = useState('');
 
   return (
-    <DoctorRegisterComp 
-      register={register} history={history}
-      number={{number,setNumber}} password={{password, setPassword}} name={{name, setName}} orgcd={{orgcd, setOrgcd}}></DoctorRegisterComp>
+    <div>
+      <CardWrapper>
+        <CardHeader>
+          <CardHeading>회원가입</CardHeading>
+        </CardHeader>
+
+        <CardBody>
+
+          <CardFieldset>
+            <CardTitle>의사번호</CardTitle>
+            <CardInput
+              placeholder="'-'를 제외한 8자리 숫자"
+              type="text"
+              onChange={(e) => setNumber(e.target.value)}
+            />
+          </CardFieldset>
+
+          <CardFieldset>
+            <CardTitle>병원기관코드</CardTitle>
+            <CardInput
+              placeholder="'-'를 제외한 8자리 숫자"
+              type="text"
+              onChange={(e) => setOrgcd(e.target.value)}
+            />
+          </CardFieldset>
+
+          <CardFieldset>
+            <CardTitle>비밀번호</CardTitle>
+            <CardInput
+              placeholder="6~12 글자 대,소,특수문자 포함"
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </CardFieldset>
+
+          <CardFieldset>
+            <CardTitle>성함</CardTitle>
+            <CardInput
+              placeholder="홍길동"
+              type="text"
+              onChange={(e) => setName(e.target.value)}
+            />
+          </CardFieldset>
+
+          <CardFieldset>
+            <CardButton
+              type="button"
+              onClick={async (e) => {
+                if (await register(number, password, name, orgcd))
+                  history.push('/login');
+              }}
+            >
+              회원가입
+            </CardButton>
+          </CardFieldset>
+
+          <CardFieldset>
+            <CardLink to="/login">이미 계정이 있으신가요?</CardLink>
+          </CardFieldset>
+        </CardBody>
+      </CardWrapper>
+    </div>
   );
 };
 
-export default Register;
+export default DoctorRegister;

@@ -84,4 +84,4 @@ const Login = ({ history }) => {
   );
 };
 
-export default Login;
+export default DoctorLogin;
