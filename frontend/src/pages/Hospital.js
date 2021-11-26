@@ -9,11 +9,15 @@ import {
   CardTitle,
   CardSelect,
   CardSelectOption,
+  CardButton,
 } from '../components/Card';
 import axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import styled from 'styled-components';
 import { ReactComponent as arrow_right } from '../imgs/arrow_left.svg';
+import call from '../imgs/call.svg';
+import loc from '../imgs/location.svg';
+import time from '../imgs/time.svg';
 
 const Body = styled.div`
   display: flex;
@@ -48,10 +52,29 @@ const ItemTitle = styled.div`
 
 const ItemIcon = styled(arrow_right)``;
 
+const ItemButton = styled.button`
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #e2e2e2;
+  }
+  &:active {
+    background: #c8c8c8;
+  }
+`;
+
 const Hospital = ({ history }) => {
   var [orgnm, setOrgnm] = useState('');
   var [selSido, setSelSido] = useState('강원도');
   var [selSi, setSelSi] = useState('');
+
+  var [hcode, setHcode] = useState('');
 
   var [sido, setSido] = useState([]);
   useEffect(() => {
@@ -74,9 +97,6 @@ const Hospital = ({ history }) => {
   var [hostpitals, setHospitals] = useState([]);
   useEffect(() => {
     if (selSi !== '') {
-      console.log(orgnm);
-      console.log(selSi);
-      console.log(selSido);
       axios
         .get('http://localhost:4000/hospitalListSearch', {
           params: {
@@ -109,6 +129,19 @@ const Hospital = ({ history }) => {
       });
   };
 
+  var [orginfo, setOrginfo] = useState([]);
+  useEffect(() => {
+    if (hcode !== '') {
+      axios
+        .get('http://localhost:4000/hospitalInfo', { params: { orgcd: hcode } })
+        .then(({ data }) => {
+          setOrginfo(data);
+        });
+    }
+  }, [hcode]);
+
+  const [modal, setModal] = useState(false);
+
   return (
     <Body>
       <Col style={{ paddingLeft: '200px', width: '20%' }}>
@@ -118,7 +151,7 @@ const Hospital = ({ history }) => {
           }}
         >
           <CardHeader style={{ marginBottom: '0px' }}>
-            <CardHeading>의료기관 검색</CardHeading>
+            <CardHeading>접종기관 검색</CardHeading>
           </CardHeader>
 
           <CardBody>
@@ -171,7 +204,9 @@ const Hospital = ({ history }) => {
         >
           <CardBody>
             <CardFieldset>
-              <CardTitle>총 개 검색</CardTitle>
+              <CardTitle>
+                {selSido} {selSi}의 접종기관 목록
+              </CardTitle>
             </CardFieldset>
           </CardBody>
 
@@ -191,11 +226,17 @@ const Hospital = ({ history }) => {
             {hostpitals.map((item) => {
               return (
                 <ItemBody>
-                  <ItemMain>
-                    <ItemAddr>{item.sido + ' > ' + item.si}</ItemAddr>
-                    <ItemTitle>{item.orgnm}</ItemTitle>
-                  </ItemMain>
-                  <ItemIcon width="16px" />
+                  <ItemButton
+                    onClick={(e) => {
+                      setHcode(item.orgcd);
+                    }}
+                  >
+                    <ItemMain>
+                      <ItemAddr>{item.sido + ' > ' + item.si}</ItemAddr>
+                      <ItemTitle>{item.orgnm}</ItemTitle>
+                    </ItemMain>
+                  </ItemButton>
+                  <ItemIcon width="16px" position="right" />
                 </ItemBody>
               );
             })}
@@ -211,10 +252,59 @@ const Hospital = ({ history }) => {
           }}
         >
           <CardHeader style={{ marginBottom: '0px' }}>
-            <CardHeading>의료기관 조회</CardHeading>
+            <CardHeading>접종기관 조회</CardHeading>
           </CardHeader>
-
-          <CardBody></CardBody>
+          <CardBody>
+            {orginfo.map((data) => {
+              return (
+                <CardFieldset>
+                  <h2 align="left"> {data.orgnm} </h2>
+                  <table width="100%" border="0">
+                    <tr>
+                      <td colSpan="2" align="left">
+                        <p>
+                          화이자 {data.canSelectVaccine.화이자} | 모더나{' '}
+                          {data.canSelectVaccine.모더나} | 얀센{' '}
+                          {data.canSelectVaccine.얀센} | 아스트라제네카{' '}
+                          {data.canSelectVaccine.아스트라제네카}
+                        </p>
+                      </td>
+                    </tr>
+                    <tr width="32px" height="32px">
+                      <td style={{ width: '32px' }}>
+                        <img src={loc} width="32px" alt="" />
+                      </td>
+                      <td align="left">{data.orgZipaddr}</td>
+                    </tr>
+                    <tr width="32px" height="32px">
+                      <td style={{ width: '32px' }}>
+                        <img src={call} width="32px" alt="" />
+                      </td>
+                      <td align="left">{data.orgTlno}</td>
+                    </tr>
+                    <tr width="32px" height="32px">
+                      <td style={{ width: '32px' }}>
+                        <img src={time} width="32px" alt="" />
+                      </td>
+                      <td align="left">
+                        {data.sttTm} ~ {data.endTm}
+                      </td>
+                    </tr>
+                    <td colSpan="2" align="center">
+                      <CardButton
+                        style={{ width: '40%' }}
+                        onClick={(e) => {
+                          setModal(true);
+                        }}
+                      >
+                        잔여백신 당일예약하기
+                      </CardButton>
+                    </td>
+                  </table>
+                </CardFieldset>
+              );
+            })}
+          </CardBody>
         </CardWrapper>
       </Col>
     </Body>
