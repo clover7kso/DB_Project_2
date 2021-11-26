@@ -100,7 +100,7 @@ END$$
 DELIMITER ;
 
 CREATE TABLE DOCTOR (
-    number INT PRIMARY KEY NOT NULL,				#의사면허번호 - 의사 로그인 id
+    id INT PRIMARY KEY NOT NULL,				#의사면허번호 - 의사 로그인 id
     pw VARCHAR(21) NOT NULL,						#비밀번호
     name varchar(100) NOT NULL,						#의사 이름
     orgcd VARCHAR(64) NOT NULL,						#병원테이블 id
@@ -110,7 +110,7 @@ DELIMITER $$
 CREATE TRIGGER trig_doctor_number_check BEFORE INSERT ON DOCTOR
 FOR EACH ROW 
 BEGIN 
-IF (NEW.number REGEXP '^[0-9]{8}$') = 0 THEN 
+IF (NEW.id REGEXP '^[0-9]{8}$') = 0 THEN 
   SIGNAL SQLSTATE '40001'
      SET MESSAGE_TEXT = "의사 면허번호는 차례대로 숫자8자리로 구성되어야한다.";
 ELSEIF (NEW.pw REGEXP '(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9]{8,20}') = 0 THEN 
