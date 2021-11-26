@@ -1,6 +1,9 @@
+import auth from "../../modules/auth.js";
+
 export default (app, connection) => {
-  app.post('/updateUser', async (req, res, next) => {
-    const { pw, phone, sido, ssn } = req.body;
+  app.get('/updateUser', auth);  
+  app.use('/updateUser', async (req, res, next) => {
+    const { pw, phone, sido, ssn } = req.query;
       connection.query(
         'UPDATE USER SET pw=?, phone=?, sido=? WHERE ssn = ?;',
         [ pw, phone, sido, ssn ],
