@@ -8,6 +8,10 @@ export const setRefreshTokenToCookie = (refreshToken) => {
   cookies.set('refreshToken', refreshToken, { sameSite: 'strict' });
 };
 
+export const getRefreshTokenFromCookie = () => {
+  return cookies.get('refreshToken');
+};
+
 export const logout = () => {
   console.log('localStorage set logout!');
   window.localStorage.setItem('logout', Date.now());
