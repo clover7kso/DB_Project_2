@@ -10,19 +10,21 @@ import {
   CardLink,
 } from '../components/Card';
 import Swal from 'sweetalert2';
-import axios from 'axios';
+import { handleDoctorLogin } from '../components/Auth';
 
 const login = async (id, pw) => {
-  const res = await axios.post('http://localhost:4000/doctorLogin', {
-    id: id,
-    pw: pw,
-  });
-  if (res.data !== false) {
+  const result = await handleDoctorLogin(id, pw);
+  console.log(result);
+  if (result === true) {
     Swal.fire(
       '로그인이 성공하였습니다.',
       '국민 건강을 위하여 백신접종은 필수입니다.',
       'success',
-    );
+    ).then((result) => {
+      if (result.isConfirmed) {
+        window.location.reload();
+      }
+    });
   } else {
     Swal.fire(
       '아이디 또는 비밀번호가 틀립니다.',
@@ -31,7 +33,7 @@ const login = async (id, pw) => {
     );
   }
 
-  return res.data;
+  return result;
 };
 
 const DoctorLogin = ({ history }) => {
