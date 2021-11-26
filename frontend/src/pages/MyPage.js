@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { getTokenFromCookie } from '../components/Auth'; 
+import { getTokenFromCookie } from '../components/Auth';
 import {
   CardWrapper,
   CardHeader,
@@ -19,8 +19,8 @@ const MyPage = async ({ history }) => {
   console.log(token);
   const res = await axios.get('http://localhost:4000/userInfo', {
     headers: {
-        token: token
-    }
+      token: token,
+    },
   });
   console.log(res.data);
   return <div>MyPage</div>;
