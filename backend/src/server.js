@@ -2,8 +2,8 @@ import express from 'express';
 import { init } from './config/db.js';
 import login from './api/User/login.js';
 import register from './api/User/register.js';
-import doctorRegister from './api/User/doctorRegister.js';
-import doctorLogin from './api/User/doctorLogin.js';
+import doctorRegister from './api/Doctor/doctorRegister.js';
+import doctorLogin from './api/Doctor/doctorLogin.js';
 import cors from 'cors';
 import hospitalInfo from './api/Hospital/hospitalInfo.js';
 import hospitalUpdate from './api/Hospital/hospitalUpdate.js';
@@ -20,9 +20,10 @@ import company from './api/V_info/company.js';
 import vaccineInfo from './api/V_info/vaccineInfo.js';
 import injectionInfo from './api/User/Mypage/injectionInfo.js';
 import updateUser from './api/User/Mypage/updateUser.js';
-import updateDoctor from './api/User/Mypage/updateDoctor.js';
+import updateDoctor from './api/Doctor/Mypage/updateDoctor.js';
 import userInfo from './api/User/Mypage/userInfo.js';
-import doctorInfo from './api/User/Mypage/doctorInfo.js';
+import doctorInfo from './api/Doctor/Mypage/doctorInfo.js';
+import injectionTable from './api/Doctor/injectionTable.js';
 import reserveVaccine from './api/Vaccine/reserveVaccine.js';
 
 const connection = init();
@@ -64,6 +65,7 @@ updateUser(app, connection);
 updateDoctor(app, connection);
 userInfo(app, connection);
 doctorInfo(app, connection);
+injectionTable(app, connection);
 reserveVaccine(app, connection);
 
 app.listen(app.get('port'), () => {
