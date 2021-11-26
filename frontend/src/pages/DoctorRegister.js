@@ -97,8 +97,13 @@ const DoctorRegister = ({ history }) => {
             </CardButton>
           </CardFieldset>
 
+          
           <CardFieldset>
-            <CardLink to="/login">이미 계정이 있으신가요?</CardLink>
+            <CardLink to="/register">백신 접종자이신가요?</CardLink>
+          </CardFieldset>
+
+          <CardFieldset>
+            <CardLink to="/DoctorLogin">이미 계정이 있으신가요?</CardLink>
           </CardFieldset>
         </CardBody>
       </CardWrapper>
