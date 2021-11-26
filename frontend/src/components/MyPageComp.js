@@ -19,7 +19,8 @@ const Table = styled.table`
   border-color:'white';
   display:'flex';
   width:80%;
-  margin-bottom:10px;
+  margin-left:35px;
+  margin-bottom:20px;
 `;
 
 const T_Col = styled.tr`
@@ -97,6 +98,59 @@ class InjectResult extends React.Component{
     }
 }
 
+class InjectList extends React.Component{
+    render(){
+        var injData = this.props.value;
+        return(
+            <CardWrapper style={{width:'100%'}}>
+              <CardHeader>
+                <CardHeading>접종 기록</CardHeading>
+              </CardHeader>
+              <CardBody style={{width:'100%'}}>
+                
+                {injData.map((inj,index) => {
+                    return <InjectResult injCount={index+1} value={inj}/> ;
+                })}
+
+              </CardBody>
+            </CardWrapper>
+        );
+    }
+}
+
+class PersonList extends React.Component{
+    render(){
+        var Data = this.props.value;
+        return(
+        <CardWrapper style={{width:'100%'}}>
+        <CardHeader>
+        <CardHeading>회원 정보</CardHeading>
+        </CardHeader>
+
+        <CardBody style={{width:'100%'}}>
+        <Table>
+            <T_Col>
+                <T_RowTitle colSpan="2">인적사항</T_RowTitle>
+            </T_Col>
+            <DataLine title='이름' value={Data.name}/>
+            <DataLine title='주민등록번호' value={Data.ssn}/>
+            <DataLine title='전화번호' value={Data.phone}/>
+            <DataLine title='지역' value={Data.sido}/>
+            <T_Col>
+                <T_RowTitle colSpan="2">아이디/패스워드</T_RowTitle>
+            </T_Col>
+            <DataLine title='아이디' value={Data.id}/>
+            <DataLine title='비밀번호' value={"*".repeat(Data.pw.length)}/>
+        </Table>
+        <CardFieldset>
+            <CardLink link="/UserUpdate">정보 수정을 원하시나요?</CardLink>
+        </CardFieldset>
+        </CardBody>
+        </CardWrapper>
+        );
+    }
+}
+
 export class MyPageComp extends React.Component {
   render() {
     const Data = this.props.data;
@@ -107,44 +161,8 @@ export class MyPageComp extends React.Component {
     if(Data!==undefined && injData!==undefined){
     return (
       <Col>
-        <CardWrapper style={{width:'100%'}}>
-          <CardHeader>
-            <CardHeading>회원 정보</CardHeading>
-          </CardHeader>
-
-          <CardBody style={{width:'100%'}}>
-            <Table>
-                <T_Col>
-                    <T_RowTitle colSpan="2">인적사항</T_RowTitle>
-                </T_Col>
-                <DataLine title='이름' value={Data.name}/>
-                <DataLine title='주민등록번호' value={Data.ssn}/>
-                <DataLine title='전화번호' value={Data.phone}/>
-                <DataLine title='지역' value={Data.sido}/>
-                <T_Col>
-                    <T_RowTitle colSpan="2">아이디/패스워드</T_RowTitle>
-                </T_Col>
-                <DataLine title='아이디' value={Data.id}/>
-                <DataLine title='비밀번호' value={Data.pw}/>
-            </Table>
-            <CardFieldset>
-              <CardLink link="/UserUpdate">정보 수정을 원하시나요?</CardLink>
-            </CardFieldset>
-          </CardBody>
-        </CardWrapper>
-
-        <CardWrapper style={{width:'100%'}}>
-          <CardHeader>
-            <CardHeading>접종 기록</CardHeading>
-          </CardHeader>
-          <CardBody style={{width:'100%'}}>
-            
-            {injData.map((inj,index) => {
-                return <InjectResult injCount={index+1} value={inj}/> ;
-            })}
-
-          </CardBody>
-        </CardWrapper>
+        <PersonList value={Data}/>
+        <InjectList value={injData}/>
       </Col>
     );
     }else return <div>로딩 중....</div>;
