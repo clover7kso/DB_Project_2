@@ -13,6 +13,7 @@ import {
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { getInfoFromCookie, logout } from '../components/Auth';
+import { NavIcon } from '../components/NavIcon';
 
 const Body = styled.div`
   position: fixed;
@@ -24,30 +25,55 @@ const StyledLink = styled(Link)`
 `;
 
 const Sel = styled.div`
-  background-color: blue;
+  display: flex;
+  flex-direction: horizontal;
+  align-items: center;
+  background-color: #424242;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+`;
+const UnSel = styled.div`
+  display: flex;
+  flex-direction: horizontal;
+  align-items: center;
+  background-color: white;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 `;
 const Tab = (title, url, page, setPage) => {
   console.log(url === page);
   return page === url ? (
     <Sel>
+      {NavIcon(url, true)}
       <StyledLink
         to={url}
         onClick={() => {
           setPage(url);
         }}
       >
-        <CardTitle>{title}</CardTitle>
+        <CardTitle style={{ color: 'white', fontSize: 16, paddingLeft: 16 }}>
+          {title}
+        </CardTitle>
       </StyledLink>
     </Sel>
   ) : (
-    <StyledLink
-      to={url}
-      onClick={() => {
-        setPage(url);
-      }}
-    >
-      <CardTitle>{title}</CardTitle>
-    </StyledLink>
+    <UnSel>
+      {NavIcon(url, false)}
+      <StyledLink
+        to={url}
+        onClick={() => {
+          setPage(url);
+        }}
+      >
+        <CardTitle style={{ color: 'black', fontSize: 16, paddingLeft: 16 }}>
+          {title}
+        </CardTitle>
+      </StyledLink>
+    </UnSel>
   );
 };
 
@@ -81,15 +107,13 @@ const Nav = ({ history }) => {
           </CardBody>
         </CardWrapper>
       ) : null}
-      <CardWrapper>
-        <CardBody style={{ marginTop: 32 }}>
-          {info
-            ? Tab('마이페이지', '/MyPage', page, setPage)
-            : Tab('로그인', '/Login', page, setPage)}
-          {Tab('홈', '/', page, setPage)}
-          {Tab('병원예약', '/Hospital', page, setPage)}
-          {Tab('접종통계', '/Statistic', page, setPage)}
-        </CardBody>
+      <CardWrapper style={{ paddingTop: 32 }}>
+        {info
+          ? Tab('마이페이지', '/MyPage', page, setPage)
+          : Tab('로그인', '/Login', page, setPage)}
+        {Tab('홈', '/', page, setPage)}
+        {Tab('병원예약', '/Hospital', page, setPage)}
+        {Tab('접종통계', '/Statistic', page, setPage)}
       </CardWrapper>
     </Body>
   );

@@ -15,7 +15,7 @@ import axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import styled from 'styled-components';
 import { ReactComponent as arrow_right } from '../imgs/arrow_left.svg';
-import org from '../imgs/hospital.svg'
+import org from '../imgs/hospital.svg';
 import call from '../imgs/call.svg';
 import loc from '../imgs/location.svg';
 import time from '../imgs/time.svg';
@@ -67,13 +67,13 @@ const ItemButton = styled.button`
 `;
 
 const TimeButton = styled.button`
-  width : '20%';
-  border : 2px solid #CDCDCD;
-  background: ${(props) => props.background || "gray"};
-  cursor : pointer;
+  width: '20%';
+  border: 2px solid #cdcdcd;
+  background: ${(props) => props.background || 'gray'};
+  cursor: pointer;
   display: block;
-  left : 0%;
-  right : auto;
+  left: 0%;
+  right: auto;
   position: relative;
   transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1);
 
@@ -162,7 +162,8 @@ const Hospital = ({ history }) => {
         });
       axios
         .get('http://localhost:4000/hospitalReserve', {
-          params: { orgcd: hcode, date: new Date() } })
+          params: { orgcd: hcode, date: new Date() },
+        })
         .then((tmdata) => {
           setNine(tmdata.data['09']);
           setTen(tmdata.data['10']);
@@ -180,13 +181,11 @@ const Hospital = ({ history }) => {
   var [revTm, setRevTm] = useState(0);
   var [revVaccine, setRevVaccine] = useState('');
 
-  const divRef=useRef(false);
+  const divRef = useRef(false);
   function handleChecked(target) {
-    
-    const vCheck = divRef.current.getElementsByTagName("input");
-    
-    for(var i=0; i<vCheck.length; i++)
-      vCheck[i].checked = false;
+    const vCheck = divRef.current.getElementsByTagName('input');
+
+    for (var i = 0; i < vCheck.length; i++) vCheck[i].checked = false;
     target.checked = true;
   }
 
@@ -296,91 +295,143 @@ const Hospital = ({ history }) => {
             <CardTitle>선택한 접종기관 정보</CardTitle>
           </CardFieldset>
           <CardFieldset>
-            {orginfo!=null?(
+            {orginfo != null ? (
               <CardFieldset>
-                <CardTitle style = {{ fontSize : '24px' }}>
-                  <img src = {org} width = '32px' height = '32px'/>
+                <CardTitle style={{ fontSize: '24px' }}>
+                  <img src={org} width="32px" height="32px" />
                   {orginfo.orgnm}
                 </CardTitle>
                 <CardTitle>
-                  <img src = {loc} width = '32px' height = '32px'/>
+                  <img src={loc} width="32px" height="32px" />
                   {orginfo.orgZipaddr}
                 </CardTitle>
                 <CardTitle>
-                  <img src = {call} width = '32px' height = '32px'/>
+                  <img src={call} width="32px" height="32px" />
                   {orginfo.orgTlno}
                 </CardTitle>
                 <CardTitle>
-                  <img src = {time} width = '32px' height = '32px'/>
-                  {orginfo.sttTm.substr(3,7)} ~ {orginfo.endTm.substr(3,7)}
+                  <img src={time} width="32px" height="32px" />
+                  {orginfo.sttTm.substr(3, 7)} ~ {orginfo.endTm.substr(3, 7)}
                 </CardTitle>
-                <CardTitle>{orginfo.lunchSttTm.substr(0,2)}:{orginfo.lunchSttTm.substr(2,4)} ~ {orginfo.lunchEndTm.substr(0,2)}:{orginfo.lunchEndTm.substr(2,4)}</CardTitle>
-                <CardTitle style = {{ color : 'gray' }}>
-                  화이자 : {orginfo.canSelectVaccine.화이자} |
-                  모더나 : {orginfo.canSelectVaccine.모더나} |
-                  얀센 : {orginfo.canSelectVaccine.얀센} |
-                  아스트라제네카 : {orginfo.canSelectVaccine.아스트라제네카}
+                <CardTitle>
+                  {orginfo.lunchSttTm.substr(0, 2)}:
+                  {orginfo.lunchSttTm.substr(2, 4)} ~{' '}
+                  {orginfo.lunchEndTm.substr(0, 2)}:
+                  {orginfo.lunchEndTm.substr(2, 4)}
                 </CardTitle>
-                <div className = 'setRevVaccine' ref = {divRef}>
-                  <input type= 'checkbox' id = 'pfizer' 
-                  onClick={(e)=>handleChecked(e.target)}/>
-                  <label for='pfizer'>화이자</label>
-                  <input type= 'checkbox' id = 'moderna' 
-                  onClick={(e)=>handleChecked(e.target)}/>
-                  <label for='moderna'>모더나</label>
-                  <input type= 'checkbox' id = 'jansen' 
-                  onClick={(e)=>handleChecked(e.target)}/>
-                  <label for='jansen'>얀센</label>
-                  <input type= 'checkbox' id = 'az' 
-                  onClick={(e)=>handleChecked(e.target)}/>
-                  <label for='az'>아스트라제네카</label>
+                <CardTitle style={{ color: 'gray' }}>
+                  화이자 : {orginfo.canSelectVaccine.화이자} | 모더나 :{' '}
+                  {orginfo.canSelectVaccine.모더나} | 얀센 :{' '}
+                  {orginfo.canSelectVaccine.얀센} | 아스트라제네카 :{' '}
+                  {orginfo.canSelectVaccine.아스트라제네카}
+                </CardTitle>
+                <div className="setRevVaccine" ref={divRef}>
+                  <input
+                    type="checkbox"
+                    id="pfizer"
+                    onClick={(e) => handleChecked(e.target)}
+                  />
+                  <label for="pfizer">화이자</label>
+                  <input
+                    type="checkbox"
+                    id="moderna"
+                    onClick={(e) => handleChecked(e.target)}
+                  />
+                  <label for="moderna">모더나</label>
+                  <input
+                    type="checkbox"
+                    id="jansen"
+                    onClick={(e) => handleChecked(e.target)}
+                  />
+                  <label for="jansen">얀센</label>
+                  <input
+                    type="checkbox"
+                    id="az"
+                    onClick={(e) => handleChecked(e.target)}
+                  />
+                  <label for="az">아스트라제네카</label>
                 </div>
-                <div className = 'setRevTime'>
-                  <CardButton style = {{ backgroundColor : nine > 0? 'green':'gray' }}
-                  onclick = {(e) => { setRevTm(9) }}>
-                  9시 ~ 10시 남은 예약수 : {nine}
+                <div className="setRevTime">
+                  <CardButton
+                    style={{ backgroundColor: nine > 0 ? 'green' : 'gray' }}
+                    onclick={(e) => {
+                      setRevTm(9);
+                    }}
+                  >
+                    9시 ~ 10시 남은 예약수 : {nine}
                   </CardButton>
-                  <CardButton style = {{ backgroundColor : ten > 0? 'green':'gray' }}
-                  onclick = {(e) => { setRevTm(10)}}>
-                  10시 ~ 11시 남은 예약수 : {ten}
+                  <CardButton
+                    style={{ backgroundColor: ten > 0 ? 'green' : 'gray' }}
+                    onclick={(e) => {
+                      setRevTm(10);
+                    }}
+                  >
+                    10시 ~ 11시 남은 예약수 : {ten}
                   </CardButton>
-                  <CardButton style = {{ backgroundColor : eleven > 0? 'green':'gray' }}
-                  onclick = {(e) => {setRevTm(11) }}>
-                  11시 ~ 12시 남은 예약수 : {eleven}
+                  <CardButton
+                    style={{ backgroundColor: eleven > 0 ? 'green' : 'gray' }}
+                    onclick={(e) => {
+                      setRevTm(11);
+                    }}
+                  >
+                    11시 ~ 12시 남은 예약수 : {eleven}
                   </CardButton>
-                  <CardButton style = {{ backgroundColor : twelve > 0? 'green':'gray' }}
-                  onclick = {(e) => { setRevTm(12) }}>
-                  12시 ~ 13시 남은 예약수 : {twelve}
+                  <CardButton
+                    style={{ backgroundColor: twelve > 0 ? 'green' : 'gray' }}
+                    onclick={(e) => {
+                      setRevTm(12);
+                    }}
+                  >
+                    12시 ~ 13시 남은 예약수 : {twelve}
                   </CardButton>
-                  <CardButton style = {{ backgroundColor : one > 0? 'green':'gray' }}
-                  onclick = {(e) => { setRevTm(13) }}>
-                  13시 ~ 14시 남은 예약수 : {one}
+                  <CardButton
+                    style={{ backgroundColor: one > 0 ? 'green' : 'gray' }}
+                    onclick={(e) => {
+                      setRevTm(13);
+                    }}
+                  >
+                    13시 ~ 14시 남은 예약수 : {one}
                   </CardButton>
-                  <CardButton style = {{ backgroundColor : two > 0? 'green':'gray' }}
-                  onclick = {(e) => { setRevTm(14) }}>
-                  14시 ~ 15시 남은 예약수 : {two}
+                  <CardButton
+                    style={{ backgroundColor: two > 0 ? 'green' : 'gray' }}
+                    onclick={(e) => {
+                      setRevTm(14);
+                    }}
+                  >
+                    14시 ~ 15시 남은 예약수 : {two}
                   </CardButton>
-                  <CardButton style = {{ backgroundColor : three > 0? 'green':'gray' }}
-                  onclick = {(e) => { setRevTm(15) }}>
-                  15시 ~ 16시 남은 예약수 : {three}
+                  <CardButton
+                    style={{ backgroundColor: three > 0 ? 'green' : 'gray' }}
+                    onclick={(e) => {
+                      setRevTm(15);
+                    }}
+                  >
+                    15시 ~ 16시 남은 예약수 : {three}
                   </CardButton>
-                  <CardButton style = {{ backgroundColor : four > 0? 'green':'gray' }}
-                  onclick = {(e) => { setRevTm(16) }}>
-                  16시 ~ 17시 남은 예약수 : {four}
+                  <CardButton
+                    style={{ backgroundColor: four > 0 ? 'green' : 'gray' }}
+                    onclick={(e) => {
+                      setRevTm(16);
+                    }}
+                  >
+                    16시 ~ 17시 남은 예약수 : {four}
                   </CardButton>
-                  <CardButton style = {{ backgroundColor : five > 0? 'green':'gray' }}
-                  onclick = {(e) => { setRevTm(17) }}>
-                  17시 ~ 18시 남은 예약수 : {five}
+                  <CardButton
+                    style={{ backgroundColor: five > 0 ? 'green' : 'gray' }}
+                    onclick={(e) => {
+                      setRevTm(17);
+                    }}
+                  >
+                    17시 ~ 18시 남은 예약수 : {five}
                   </CardButton>
                 </div>
-                <div className = 'revBtn' align = 'center'>
-                  <CardButton style={{ width: '40%'}}>
+                <div className="revBtn" align="center">
+                  <CardButton style={{ width: '40%' }}>
                     잔여백신 당일예약하기
                   </CardButton>
                 </div>
-              </CardFieldset>)
-              :null
-            }
+              </CardFieldset>
+            ) : null}
           </CardFieldset>
         </CardBody>
       </CardWrapper>
