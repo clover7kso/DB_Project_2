@@ -10,14 +10,12 @@ import {
   CardLink,
 } from '../components/Card';
 import Swal from 'sweetalert2';
-import axios from 'axios';
+import { handleLogin } from '../components/Auth';
 
 const login = async (id, pw) => {
-  const res = await axios.post('http://localhost:4000/login', {
-    id: id,
-    pw: pw,
-  });
-  if (res.data === true) {
+  const result = await handleLogin(id, pw);
+  console.log(result);
+  if (result === true) {
     Swal.fire(
       '로그인이 성공하였습니다.',
       '국민 건강을 위하여 백신접종은 필수입니다.',
@@ -31,7 +29,7 @@ const login = async (id, pw) => {
     );
   }
 
-  return res.data;
+  return result;
 };
 
 const Login = ({ history }) => {
@@ -42,7 +40,7 @@ const Login = ({ history }) => {
     <div>
       <CardWrapper>
         <CardHeader>
-          <CardHeading>로그인</CardHeading>
+          <CardHeading>국민 로그인</CardHeading>
         </CardHeader>
 
         <CardBody>
@@ -77,6 +75,10 @@ const Login = ({ history }) => {
 
           <CardFieldset>
             <CardLink to="/register">계정이 없으신가요?</CardLink>
+          </CardFieldset>
+
+          <CardFieldset>
+            <CardLink to="/DoctorLogin">접종기관 의사이신가요?</CardLink>
           </CardFieldset>
         </CardBody>
       </CardWrapper>
