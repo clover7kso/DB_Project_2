@@ -10,7 +10,7 @@ export default async (app, connection) => {
         if (error) console.log(error);
         connection.query(
           'SELECT I.inject_date, I.reservation_time, H.orgnm, V.name AS Vname, U.name AS Uname  FROM INJECTION I, USER U, HOSPITAL H, VACCINE V WHERE I.ssn = U.ssn AND I.orgcd = H.orgcd AND I.number = V.number AND U.ssn = ?;',
-          [data.ssn],
+          [data[0].ssn],
           (error1, data1) => {
             if (error1) console.log(error);
             const result1 = data1;

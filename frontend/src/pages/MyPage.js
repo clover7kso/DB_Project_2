@@ -16,7 +16,23 @@ const MyPage = ({ history }) => {
       .then(({ data }) => setUserInfo(data[0]));
   }, []);
   console.log(userInfo);
-  return <MyPageComp data={userInfo}/>;
+
+  const [injInfo, setInjInfo] = useState();
+  useEffect(() => {
+    if(userInfo!==undefined){
+      axios
+        .get('http://localhost:4000/injectionInfo',{
+          headers: {
+            token: token,
+          },
+        })
+        .then(({ data }) => setInjInfo(data));
+    }
+  }, [userInfo]);
+  console.log(injInfo);
+  
+
+  return <MyPageComp data={userInfo} inj={injInfo}/>;
 };
 
 export default MyPage;
