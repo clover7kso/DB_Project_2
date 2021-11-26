@@ -8,11 +8,11 @@ export default (app, connection) => {
       [id, pw],
       async (error, data) => {
         if (error) throw error;
-        const result = data.id ? true : false;
+        const result = data[0].id ? true : false;
         console.log(data);
-        if (result == true) {
+        if (result === true) {
           const jwtToken = await sign(id, pw);
-          jwtToken.name = data.name;
+          jwtToken.name = data[0].name;
           jwtToken.type = 'doctor';
           console.log(jwtToken);
           res.send(jwtToken);

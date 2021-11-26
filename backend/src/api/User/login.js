@@ -3,15 +3,17 @@ import { sign } from '../modules/jwt.js';
 export default (app, connection) => {
   app.post('/login', (req, res, next) => {
     const { id, pw } = req.body;
+    console.log(id)
+    console.log(pw)
     connection.query(
       'SELECT id, name FROM user WHERE id = ? and pw = ?',
       [id, pw],
       async (error, data) => {
         if (error) throw error;
-        const result = data.id ? true : false;
-        if (result == true) {
+        const result = data[0].id ? true : false;
+        if (result === true) {
           const jwtToken = await sign(id, pw);
-          jwtToken.name = data.name;
+          jwtToken.name = data[0].name;
           jwtToken.type = 'user';
           console.log(jwtToken);
           res.send(jwtToken);
