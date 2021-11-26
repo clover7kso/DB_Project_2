@@ -17,7 +17,7 @@ const login = async (id, pw) => {
     number: id,
     pw: pw,
   });
-  if (res.data === true) {
+  if (res.data !== false) {
     Swal.fire(
       '로그인이 성공하였습니다.',
       '국민 건강을 위하여 백신접종은 필수입니다.',
