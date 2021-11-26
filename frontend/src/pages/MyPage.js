@@ -1,19 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { getTokenFromCookie } from '../components/Auth';
-import {
-  CardWrapper,
-  CardHeader,
-  CardHeading,
-  CardBody,
-  CardFieldset,
-  CardInput,
-  CardTitle,
-  CardSelect,
-  CardSelectOption,
-  CardButton,
-} from '../components/Card';
-
 import MyPageComp from '../components/MyPageComp';
 
 const MyPage = ({ history }) => {

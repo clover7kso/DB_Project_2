@@ -8,37 +8,42 @@ import {
   CardLink,
 } from '../components/Card';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
-const Body = styled.div`
+const Col = styled.div`
   align-items: 'center';
   justify-content: 'center';
 `;
 
 const Table = styled.table`
-border:1;
-border-color:'white';
-display:'flex'
-width:'100%';
+  border:1;
+  border-color:'white';
+  display:'flex';
+  width:80%;
 `;
 
 const T_Col = styled.tr`
-width:'100%';
+  width:100%;
 `;
 
 const T_Row = styled.td`
-background-color:#FFFFFF;
-width:'80%';
+  background-color:#FAFAFA;
+  padding-top:5px;
+  padding-bottom:5px;
+  width:100%;
 `;
 
 const T_RowBold = styled.th`
-background-color:#EEEEEE;
-width:'80%';
+  background-color:#EEEEEE;
+  padding-top:5px;
+  padding-bottom:5px;
+  width:30%;
 `;
 
 const T_RowTitle = styled.th`
-background-color:#E2E2E2;
-width:'80%';
+  background-color:#E2E2E2;
+  padding-top:5px;
+  padding-bottom:5px;
+  width:70%;
 `;
 
 class DataLine extends React.Component{
@@ -61,13 +66,13 @@ export class MyPageComp extends React.Component {
 
     if(Data!==undefined){
     return (
-      <Body>
-        <CardWrapper>
+      <Col>
+        <CardWrapper style={{width:'100%'}}>
           <CardHeader>
             <CardHeading>회원 정보</CardHeading>
           </CardHeader>
 
-          <CardBody>
+          <CardBody style={{width:'100%'}}>
             <Table>
                 <T_Col>
                     <T_RowTitle colSpan="2">인적사항</T_RowTitle>
@@ -87,7 +92,7 @@ export class MyPageComp extends React.Component {
             </CardFieldset>
           </CardBody>
         </CardWrapper>
-      </Body>
+      </Col>
     );
     }else return <div>로딩 중....</div>;
   }
