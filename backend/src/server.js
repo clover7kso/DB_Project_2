@@ -24,6 +24,7 @@ import updateDoctor from './api/Doctor/Mypage/updateDoctor.js';
 import userInfo from './api/User/Mypage/userInfo.js';
 import doctorInfo from './api/Doctor/Mypage/doctorInfo.js';
 import injectionTable from './api/Doctor/injectionTable.js';
+import updateInjectionTable from './api/Doctor/updateInjectionTable.js';
 import reserveVaccine from './api/Vaccine/reserveVaccine.js';
 
 const connection = init();
@@ -66,6 +67,7 @@ updateDoctor(app, connection);
 userInfo(app, connection);
 doctorInfo(app, connection);
 injectionTable(app, connection);
+updateInjectionTable(app, connection);
 reserveVaccine(app, connection);
 
 app.listen(app.get('port'), () => {
