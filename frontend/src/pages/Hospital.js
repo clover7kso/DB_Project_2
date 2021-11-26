@@ -86,10 +86,12 @@ const Hospital = ({ history }) => {
     console.log('Close Modal:' + modalIsOpen);
     setIsOpen(false);
   };
+
+  const today = new Date();
   const defaultValue = {
-    year: 2019,
-    month: 10,
-    day: 5,
+    year: today.getFullYear(),
+    month: today.getMonth(),
+    day: today.getDay(),
   };
   const [selectedDay, setSelectedDay] = useState(defaultValue);
   return (
