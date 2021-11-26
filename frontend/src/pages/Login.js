@@ -13,7 +13,8 @@ import Swal from 'sweetalert2';
 import { handleLogin } from '../components/Auth';
 
 const login = async (id, pw) => {
-  const result = handleLogin(id, pw);
+  const result = await handleLogin(id, pw);
+  console.log(result);
   if (result === true) {
     Swal.fire(
       '로그인이 성공하였습니다.',
@@ -39,7 +40,7 @@ const Login = ({ history }) => {
     <div>
       <CardWrapper>
         <CardHeader>
-          <CardHeading>로그인</CardHeading>
+          <CardHeading>국민 로그인</CardHeading>
         </CardHeader>
 
         <CardBody>
@@ -79,7 +80,6 @@ const Login = ({ history }) => {
           <CardFieldset>
             <CardLink to="/DoctorLogin">접종기관 의사이신가요?</CardLink>
           </CardFieldset>
-
         </CardBody>
       </CardWrapper>
     </div>

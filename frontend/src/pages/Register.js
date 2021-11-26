@@ -56,7 +56,7 @@ const Register = ({ history }) => {
     <div>
       <CardWrapper>
         <CardHeader>
-          <CardHeading>회원가입</CardHeading>
+          <CardHeading>의사 회원가입</CardHeading>
         </CardHeader>
 
         <CardBody>
@@ -137,7 +137,6 @@ const Register = ({ history }) => {
           <CardFieldset>
             <CardLink to="/DoctorRegister">접종기관 의사이신가요?</CardLink>
           </CardFieldset>
-          
         </CardBody>
       </CardWrapper>
     </div>

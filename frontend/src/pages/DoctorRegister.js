@@ -16,7 +16,7 @@ import axios from 'axios';
 const register = async (number, password, name, orgcd) => {
   const res = await axios.post('http://localhost:4000/doctorRegister', {
     number: number,
-    pw : password,
+    pw: password,
     name: name,
     orgcd: orgcd,
   });
@@ -44,11 +44,10 @@ const DoctorRegister = ({ history }) => {
     <div>
       <CardWrapper>
         <CardHeader>
-          <CardHeading>회원가입</CardHeading>
+          <CardHeading>의사 회원가입</CardHeading>
         </CardHeader>
 
         <CardBody>
-
           <CardFieldset>
             <CardTitle>의사번호</CardTitle>
             <CardInput
@@ -100,11 +99,10 @@ const DoctorRegister = ({ history }) => {
           <CardFieldset>
             <CardLink to="/DoctorLogin">이미 계정이 있으신가요?</CardLink>
           </CardFieldset>
-          
+
           <CardFieldset>
             <CardLink to="/register">접종기관 의사가 아니신가요?</CardLink>
           </CardFieldset>
-
         </CardBody>
       </CardWrapper>
     </div>

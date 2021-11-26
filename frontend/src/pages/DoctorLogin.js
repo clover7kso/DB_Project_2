@@ -42,7 +42,7 @@ const DoctorLogin = ({ history }) => {
     <div>
       <CardWrapper>
         <CardHeader>
-          <CardHeading>로그인</CardHeading>
+          <CardHeading>의사 로그인</CardHeading>
         </CardHeader>
 
         <CardBody>
@@ -82,7 +82,6 @@ const DoctorLogin = ({ history }) => {
           <CardFieldset>
             <CardLink to="/login">접종기관 의사가 아니신가요?</CardLink>
           </CardFieldset>
-
         </CardBody>
       </CardWrapper>
     </div>
