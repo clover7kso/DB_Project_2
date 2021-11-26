@@ -1,6 +1,7 @@
 export default async (app, connection) => {
     app.get('/hospitalInfo', async (req, res, next) => {
       const { orgcd } = req.query;
+      console.log(orgcd);
       await connection.query(
         'SELECT orgcd, orgnm, orgTlno, orgZipaddr, lunchSttTm, lunchEndTm, sttTm, endTm FROM HOSPITAL WHERE orgcd = ?;',
         [orgcd],

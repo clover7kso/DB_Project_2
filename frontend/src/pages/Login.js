@@ -12,15 +12,15 @@ import {
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
-const login = async (email, password) => {
+const login = async (id, pw) => {
   const res = await axios.post('http://localhost:4000/login', {
-    email: email,
-    password: password,
+    id: id,
+    pw: pw,
   });
   if (res.data === true) {
     Swal.fire(
       '로그인이 성공하였습니다.',
-      '국민 건강을 위하여 백신은 필수입니다.',
+      '국민 건강을 위하여 백신접종은 필수입니다.',
       'success',
     );
   } else {
@@ -35,8 +35,8 @@ const login = async (email, password) => {
 };
 
 const Login = ({ history }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [id, setID] = useState('');
+  const [pw, setPassword] = useState('');
 
   return (
     <div>
@@ -48,9 +48,9 @@ const Login = ({ history }) => {
         <CardBody>
           <CardFieldset>
             <CardInput
-              placeholder="이메일"
+              placeholder="아이디"
               type="text"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setID(e.target.value)}
             />
           </CardFieldset>
 
@@ -66,7 +66,7 @@ const Login = ({ history }) => {
             <CardButton
               type="button"
               onClick={async (e) => {
-                if (await login(email, password)) {
+                if (await login(id, pw)) {
                   history.push('/');
                 }
               }}
