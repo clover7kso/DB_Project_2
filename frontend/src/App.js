@@ -37,6 +37,8 @@ class App extends Component {
             <Route path="/hospital" component={Hospital} />
             <Route path="/Manager" component={Manager} />
             <Route path="/Statistic" component={Statistic} />
+            <Route path="/DoctorLogin" component={DoctorLogin} />
+            <Route path="/DoctorRegister" component={DoctorRegister} />
           </Switch>
         </Col>
       </Body>
