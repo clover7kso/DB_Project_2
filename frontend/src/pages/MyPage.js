@@ -14,6 +14,8 @@ import {
   CardButton,
 } from '../components/Card';
 
+import MyPageComp from '../components/MyPageComp';
+
 const MyPage = ({ history }) => {
   const token = getTokenFromCookie();
   const [userInfo, setUserInfo] = useState();
@@ -27,7 +29,7 @@ const MyPage = ({ history }) => {
       .then(({ data }) => setUserInfo(data[0]));
   }, []);
   console.log(userInfo);
-  return <div>MyPage</div>;
+  return <MyPageComp data={userInfo}/>;
 };
 
 export default MyPage;
