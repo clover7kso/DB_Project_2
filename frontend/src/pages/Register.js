@@ -13,19 +13,20 @@ import {
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
-const register = async (email, password, phone, name, id) => {
+const register = async (ssn, id, pw, phone, name, sido) => {
   const res = await axios.post('http://localhost:4000/register', {
-    email: email,
-    password: password,
+    ssn: ssn,
+    id: id,
+    pw: pw,
     phone: phone,
     name: name,
-    id: id,
+    sido: sido,
   });
   const { result, msg } = res.data;
   if (result === true) {
     Swal.fire(
       '회원가입에 성공하였습니다.',
-      '국민 건강을 위하여 백신은 필수입니다. 로그인을 진행하여주세요',
+      '국민 건강을 위하여 백신접종은 필수입니다. 로그인을 진행하여주세요',
       'success',
     );
   } else {
@@ -36,11 +37,12 @@ const register = async (email, password, phone, name, id) => {
 };
 
 const Register = ({ history }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [ssn, setSsn] = useState('');
+  const [id, setID] = useState('');
+  const [pw, setPassword] = useState('');
   const [phone, setPhone] = useState('');
   const [name, setName] = useState('');
-  const [id, setId] = useState('');
+  const [sido, setAddress] = useState('');
 
   return (
     <div>
@@ -51,29 +53,20 @@ const Register = ({ history }) => {
 
         <CardBody>
           <CardFieldset>
-            <CardTitle>이메일</CardTitle>
+            <CardTitle>아이디</CardTitle>
             <CardInput
-              placeholder="vaccine@good.com"
+              placeholder="5~15 영문 및 숫자를 포함"
               type="text"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setID(e.target.value)}
             />
           </CardFieldset>
 
           <CardFieldset>
             <CardTitle>비밀번호</CardTitle>
             <CardInput
-              placeholder="6~12 글자 대,소,특수문자 포함"
+              placeholder="8~20 최소 하나의 문자 및 하나의 숫자 포함"
               type="password"
               onChange={(e) => setPassword(e.target.value)}
-            />
-          </CardFieldset>
-
-          <CardFieldset>
-            <CardTitle>휴대전화</CardTitle>
-            <CardInput
-              placeholder="010-0000-0000"
-              type="text"
-              onChange={(e) => setPhone(e.target.value)}
             />
           </CardFieldset>
 
@@ -87,11 +80,29 @@ const Register = ({ history }) => {
           </CardFieldset>
 
           <CardFieldset>
+            <CardTitle>휴대전화</CardTitle>
+            <CardInput
+              placeholder="- 제외하고 입력 ex) 01012345678"
+              type="text"
+              onChange={(e) => setPhone(e.target.value)}
+            />
+          </CardFieldset>
+
+          <CardFieldset>
             <CardTitle>주민번호</CardTitle>
             <CardInput
               placeholder="000000-0000000"
               type="text"
-              onChange={(e) => setId(e.target.value)}
+              onChange={(e) => setSsn(e.target.value)}
+            />
+          </CardFieldset>
+
+          <CardFieldset>
+            <CardTitle>주소</CardTitle>
+            <CardInput
+              placeholder="서울특별시 노원구 광운로 19"
+              type="text"
+              onChange={(e) => setAddress(e.target.value)}
             />
           </CardFieldset>
 
@@ -99,7 +110,7 @@ const Register = ({ history }) => {
             <CardButton
               type="button"
               onClick={async (e) => {
-                if (await register(email, password, phone, name, id))
+                if (await register(ssn, id, pw, phone, name, sido))
                   history.push('/login');
               }}
             >

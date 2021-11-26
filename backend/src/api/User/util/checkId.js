@@ -1,5 +1,5 @@
 export default (req, connection) => {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     const { id } = req.body;
     connection.query(
       'SELECT COUNT(id) as cnt FROM user WHERE id = ?',
