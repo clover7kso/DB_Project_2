@@ -161,7 +161,7 @@ export class StatisticComp extends React.Component {
             />
           </CardBody>
         </CardWrapper>
-        <CardWrapper>
+        <CardWrapper style={{ marginBottom: 32 }}>
           <CardHeader>
             <CardHeading>접종단계 현황</CardHeading>
           </CardHeader>
