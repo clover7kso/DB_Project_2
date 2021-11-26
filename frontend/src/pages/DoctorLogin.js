@@ -14,7 +14,7 @@ import axios from 'axios';
 
 const login = async (id, pw) => {
   const res = await axios.post('http://localhost:4000/doctorLogin', {
-    number: id,
+    id: id,
     pw: pw,
   });
   if (res.data !== false) {

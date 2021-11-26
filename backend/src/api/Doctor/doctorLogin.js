@@ -9,7 +9,7 @@ export default (app, connection) => {
       async (error, data) => {
         if (error) throw error;
         const result = data ? true : false;
-        console.log(result)
+        console.log(data)
         if(result == true) {
           const jwtToken = await sign(id, pw);
           jwtToken.name = data[0].name;

@@ -1,6 +1,6 @@
-import authDoctor from "../../modules/authDoctor.js";
+import auth from "../../modules/auth.js";
 export default async (app, connection) => {
-  app.get('/doctorInfo', authDoctor);
+  app.get('/doctorInfo', auth);
   app.use('/doctorInfo', async (req, res, next) => {
     console.log(req.query);
     const { id } = req.query;
