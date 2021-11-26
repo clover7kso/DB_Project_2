@@ -4,14 +4,14 @@ import axios from 'axios';
 
 const cookies = new Cookie();
 
-export const setRefreshTokenToCookie = (refresh_token) => {
-  cookies.set('refresh_token', refresh_token, { sameSite: 'strict' });
+export const setRefreshTokenToCookie = (refreshToken) => {
+  cookies.set('refreshToken', refreshToken, { sameSite: 'strict' });
 };
 
 export const logout = () => {
   console.log('localStorage set logout!');
   window.localStorage.setItem('logout', Date.now());
-  cookies.remove('refresh_token');
+  cookies.remove('refreshToken');
 };
 
 export const handleLogin = async (id, pw) => {
@@ -21,7 +21,7 @@ export const handleLogin = async (id, pw) => {
   });
   if (res.data.token) {
     console.log('로그인 성공!');
-    setRefreshTokenToCookie(res.data.refresh_token); // cookie에 refresh_token 저장
+    setRefreshTokenToCookie(res.data.refreshToken); // cookie에 refresh_token 저장
     return true;
   } else {
     console.log('로그인 실패');
