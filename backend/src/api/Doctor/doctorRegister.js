@@ -1,4 +1,4 @@
-import checkDoctorNumber from './util/checkDoctorNumber.js';
+import checkDoctorNumber from "./util/checkDoctorNumber.js";
 
 export default (app, connection) => {
   app.post('/doctorRegister', async (req, res, next) => {
