@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   CardWrapper,
   CardHeader,
@@ -9,6 +9,8 @@ import {
   CardButton,
   CardLink,
   CardTitle,
+  CardSelect,
+  CardSelectOption,
 } from '../components/Card';
 import Swal from 'sweetalert2';
 import axios from 'axios';
@@ -42,7 +44,13 @@ const Register = ({ history }) => {
   const [pw, setPassword] = useState('');
   const [phone, setPhone] = useState('');
   const [name, setName] = useState('');
-  const [sido, setAddress] = useState('');
+  var [selSi, setSelSi] = useState('');
+  var [sido, setSido] = useState([]);
+  useEffect(() => {
+    axios
+      .get('http://localhost:4000/hospitalSido')
+      .then(({ data }) => setSido(data));
+  }, []);
 
   return (
     <div>
@@ -98,19 +106,23 @@ const Register = ({ history }) => {
           </CardFieldset>
 
           <CardFieldset>
-            <CardTitle>주소</CardTitle>
-            <CardInput
-              placeholder="서울특별시 노원구 광운로 19"
-              type="text"
-              onChange={(e) => setAddress(e.target.value)}
-            />
+            <CardTitle>시/구</CardTitle>
+            <CardSelect onChange={(e) => setSelSi(e.target.value)}>
+              {sido.map((item) => {
+                return (
+                  <CardSelectOption value={item.sido}>
+                    {item.sido}
+                  </CardSelectOption>
+                );
+              })}
+            </CardSelect>
           </CardFieldset>
 
           <CardFieldset>
             <CardButton
               type="button"
               onClick={async (e) => {
-                if (await register(ssn, id, pw, phone, name, sido))
+                if (await register(ssn, id, pw, phone, name, selSi))
                   history.push('/login');
               }}
             >
