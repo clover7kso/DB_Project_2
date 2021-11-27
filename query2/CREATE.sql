@@ -95,6 +95,13 @@ IF (
 ) THEN 
   SIGNAL SQLSTATE '30001'
      SET MESSAGE_TEXT = "백신접종은 1인당 2번이 최대이다.";
+ELSEIF (
+    (select TIMESTAMPDIFF(day, date(reservation_time), date(NEW.reservation_time))
+	from injection
+	where ssn=NEW.ssn)<14
+) THEN 
+  SIGNAL SQLSTATE '30002'
+     SET MESSAGE_TEXT = "2차 백신접종은 1차 백신접종 14일 이후에 맞을 수 있다.";
 END IF; 
 END$$
 DELIMITER ;
