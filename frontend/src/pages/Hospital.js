@@ -80,20 +80,45 @@ const Hospital = ({ history }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const openModal = () => {
     console.log('Open Modal:' + modalIsOpen);
+    console.log(date);
     setIsOpen(true);
   };
   const closeModal = () => {
     console.log('Close Modal:' + modalIsOpen);
+    setDate();
     setIsOpen(false);
   };
 
   const today = new Date();
   const defaultValue = {
     year: today.getFullYear(),
-    month: today.getMonth(),
-    day: today.getDay(),
+    month: today.getMonth() + 1,
+    day: today.getDate(),
   };
-  const [selectedDay, setSelectedDay] = useState(defaultValue);
+  const [day, setDay] = useState(defaultValue);
+  const [date, setDate] = useState();
+
+  const [canReserv, setCanReserv] = useState();
+  useEffect(() => {
+    if (hcode && day)
+      axios
+        .get('http://localhost:4000/hospitalReserve', {
+          params: {
+            orgcd: hcode,
+            y: day.year,
+            m: day.month,
+            d: day.day,
+          },
+        })
+        .then(({ data }) => {
+          setCanReserv(data);
+          setTime(data[0].key);
+        });
+  }, [day]);
+  console.log(canReserv);
+
+  const [time, setTime] = useState();
+
   return (
     <Body>
       {HSearch({
@@ -106,7 +131,18 @@ const Hospital = ({ history }) => {
       })}
       {HList({ selSido, selSi, hostpitals, next, setHcode })}
       {HInfo({ orginfo, openModal })}
-      {HReserv({ modalIsOpen, closeModal, selectedDay, setSelectedDay })}
+      {HReserv({
+        orgcd: hcode,
+        modalIsOpen,
+        closeModal,
+        day,
+        setDay,
+        date,
+        setDate,
+        canReserv,
+        time,
+        setTime,
+      })}
     </Body>
   );
 };
