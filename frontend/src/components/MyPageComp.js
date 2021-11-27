@@ -69,6 +69,13 @@ const DateTransForm = (raw_date)=>{
     const time = d_t[1].split(':');
     return day[0]+'년 '+day[1]+'월 '+day[2]+'일 / '+time[0]+'시 '+time[1]+'분';
 }
+
+const DateTransFormTZ = (raw_date)=>{
+  const d_t = raw_date.split('T');
+  const day = d_t[0].split('-');
+  const time = d_t[1].split(':');
+  return day[0]+'년 '+day[1]+'월 '+day[2]+'일 / '+time[0]+'시 '+time[1]+'분';
+}
 class DataLine extends React.Component{
     render(){
         var name = this.props.title;
@@ -95,8 +102,8 @@ class InjectResult extends React.Component{
         const orgnm = value.orgnm;
         //const number = value.number;
 
-        var i_str = DateTransForm(inj);
-        var r_str = DateTransForm(rsv);
+        var i_str = inj//DateTransForm(inj);
+        var r_str = rsv//DateTransFormTZ(rsv);
 
         return(
           <CardBody>
