@@ -1,29 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { getTokenFromCookie } from '../components/Auth'; 
-import {
-  CardWrapper,
-  CardHeader,
-  CardHeading,
-  CardBody,
-  CardFieldset,
-  CardInput,
-  CardTitle,
-  CardSelect,
-  CardSelectOption,
-  CardButton,
-} from '../components/Card';
+import { getTokenFromCookie } from '../components/Auth';
+import DoctorMyPageComp from '../components/DoctorMyPageComp';
 
-const DoctorMyPage = async ({ history }) => {
+const DoctorMyPage = ({ history }) => {
   const token = getTokenFromCookie();
-  console.log(token);
-  const res = await axios.get('http://localhost:4000/doctorInfo', {
-    headers: {
-        token: token
-    }
-  });
-  console.log(res.data);
-  return <div>DoctorMyPage</div>;
+  const [userInfo, setUserInfo] = useState();
+  useEffect(() => {
+    axios
+      .get('http://localhost:4000/doctorInfo', {
+        headers: {
+          token: token,
+        },
+      })
+      .then(({ data }) => setUserInfo(data[0]));
+  }, []);
+  console.log(userInfo);
+
+  return <DoctorMyPageComp data={userInfo}/>;
 };
 
 export default DoctorMyPage;
