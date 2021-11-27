@@ -20,15 +20,15 @@ export default (app, connection) => {
           (error1, data1) => {
             if (error1) throw error;
             res.send(true);
+            connection.query(
+              'INSERT INTO INJECTION(number, ssn, orgcd, inject_date, reservation_time) VALUES (?,?,?,NULL,?)',
+              [result[0].number, data1.ssn, orgcd, reservation_time],
+              (error2, data2) => {
+                if (error2) throw error;
+                res.send(true);
+              },
+            )
           },
-          connection.query(
-            'INSERT INTO INJECTION(number, ssn, orgcd, inject_date, reservation_time) VALUES (?,?,?,NULL,?)',
-            [result[0].number, data1.ssn, orgcd, reservation_time],
-            (error2, data2) => {
-              if (error2) throw error;
-              res.send(true);
-            },
-          ),
         );
         console.log(result);
       },
