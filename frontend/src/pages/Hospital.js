@@ -121,7 +121,7 @@ const Hospital = ({ history }) => {
           setCanReserv(data);
           setTime(data[0].key);
         });
-  }, [day]);
+  }, [day, hcode]);
 
   const [time, setTime] = useState();
   const [selTime, setSelTime] = useState();
