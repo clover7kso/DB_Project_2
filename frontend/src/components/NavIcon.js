@@ -10,6 +10,7 @@ import unsel_statistic from '../imgs/unsel_statistic.png';
 
 const ImgSelItems = {
   '/MyPage': <img src={sel_per} width={24} height={24} alt="icon" />,
+  '/DoctorMyPage': <img src={sel_per} width={24} height={24} alt="icon" />,
   '/Login': <img src={sel_per} width={24} height={24} alt="icon" />,
   '/': <img src={sel_home} width={24} height={24} alt="icon" />,
   '/Hospital': <img src={sel_inject} width={24} height={24} alt="icon" />,
@@ -18,6 +19,7 @@ const ImgSelItems = {
 };
 const ImgUnselItems = {
   '/MyPage': <img src={unsel_per} width={24} height={24} alt="icon" />,
+  '/DoctorMyPage': <img src={unsel_per} width={24} height={24} alt="icon" />,
   '/Login': <img src={unsel_per} width={24} height={24} alt="icon" />,
   '/': <img src={unsel_home} width={24} height={24} alt="icon" />,
   '/Hospital': <img src={unsel_inject} width={24} height={24} alt="icon" />,
