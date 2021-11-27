@@ -56,3 +56,24 @@ export const handleDoctorLogin = async (id, pw) => {
     return false;
   }
 };
+
+export const handleUpdateUser = async (id, pw, sido, phone ,pwcf) => {
+  if(pw!==pwcf) return {result:false,msg:"Password_Error"};
+  if(isNaN(phone) || phone.length<9 || phone.length>12 ) return {result:false,msg:"Phone_Data_Not_Allowed"};
+
+  console.log(id, pw, sido, phone ,pwcf);
+
+  const res = await axios.post('http://localhost:4000/updateUser', {
+    id: id,
+    pw: pw,
+    sido: sido,
+    phone: phone
+  });
+  if (res.result) {
+    console.log('업데이트 성공!');
+    return {result:true,msg:"Sucess"};
+  } else {
+    console.log('업데이트 실패');
+    return {result:false,msg:"QuerryError"};
+  }
+};

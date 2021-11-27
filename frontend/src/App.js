@@ -14,6 +14,7 @@ import DoctorRegister from './pages/DoctorRegister';
 import MyPage from './pages/MyPage';
 import DoctorMyPage from './pages/DoctorMyPage';
 import PatientInfo from './pages/PatientInfo';
+import UpdateUser from './pages/UpdateUser';
 
 const Body = styled.div`
   display: flex;
@@ -47,6 +48,7 @@ class App extends Component {
             <Route path="/MyPage" component={MyPage} />
             <Route path="/DoctorMyPage" component={DoctorMyPage} />
             <Route path='/PatientInfo' component={PatientInfo} />
+            <Route path='/UpdateUser' component={UpdateUser} />
           </Switch>
         </Col>
       </Body>

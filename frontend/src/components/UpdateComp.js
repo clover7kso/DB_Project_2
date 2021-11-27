@@ -112,7 +112,7 @@ function PersonInsert(arg){
             <CardTitle>인적 사항</CardTitle>
             <DataLine title='이름' value={Data.name} disable='true'/>
             <DataLine title='주민등록번호' value={Data.ssn} disable='true'/>
-            <DataLine onChange={valChange('phone')} title='전화번호' value={Data.phone} placeholder="'-'제외하고 입력"/>
+            <DataLine onChange={valChange('phone')} title='전화번호' value={Data.phone} placeholder="'-'제외하고 입력 (9~12자리)"/>
             <DataSel onChange={valChange('sido')} title='지역' sido={sido} defaultValue={Data.sido}/>
           </CardFieldset>
 
@@ -122,12 +122,13 @@ function PersonInsert(arg){
             <DataLine onChange={valChange('pw')} title='비밀번호' type="password" placeholder={"*".repeat(Data.pw.length)}/>
             <DataLine onChange={valChange('pwcf')} title='비밀번호확인' type="password"/>
           </CardFieldset>
+
+          <CardFieldset style={{ marginTop: '2em',marginLeft:'-64px',display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+            <CardButton style={{ width:'20%'}} onClick={()=>onFinish(res)}>수정</CardButton>
+            <CardLink style={{marginLeft:'30%',fontSize:'15px',color:'#555555'}} to="/MyPage">취소</CardLink>
+          </CardFieldset>
         </CardBody>
 
-          <CardFieldset style={{ marginTop: '2em',marginLeft:'-64px'}}>
-            <CardButton onClick={()=>onFinish(res)}>수정</CardButton>
-            <CardLink to="/MyPage">취소</CardLink>
-          </CardFieldset>
         </CardBody>
       </CardWrapper>
     );
