@@ -87,7 +87,7 @@ const Tab = (title, url, page, setPage) => {
 //홈페이지 로고, 통계, 마이페이지, 로그인
 const Nav = ({ history }) => {
   const info = getInfoFromCookie();
-  const [page, setPage] = useState('/');
+  const [page, setPage] = useState(window.location.pathname);
   return (
     <Body>
       <CardWrapper style={{ paddingTop: 0, paddingBottom: 0 }}>

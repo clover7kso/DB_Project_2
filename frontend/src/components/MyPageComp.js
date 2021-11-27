@@ -75,8 +75,8 @@ class DataLine extends React.Component{
         var value = this.props.value;
         var icon = this.props.icon;
         return(
-          <ItemWrapper>
-            {icon===undefined?'':<ItemIcon src={icon} />}
+          <ItemWrapper style={{marginLeft:'-12px'}}>
+            {icon===undefined?'':<ItemIcon style={{marginLeft:'12px'}} src={icon} />}
             <ItemName>{name}</ItemName>
             <ItemInfo> : {value}</ItemInfo>
           </ItemWrapper>
@@ -97,8 +97,6 @@ class InjectResult extends React.Component{
 
         var i_str = DateTransForm(inj);
         var r_str = DateTransForm(rsv);
-
-        //var inject_date = inj.split('T').split('');
 
         return(
           <CardBody>
@@ -124,7 +122,7 @@ class InjectList extends React.Component{
                 <CardHeading style={{marginBottom:'0px'}}>접종 기록</CardHeading>
               </CardHeader>
               <CardBody style={{width:'100%'}}>
-                
+                {injData.length==0? '접종예약이 되지 않았습니다.':''}
                 {injData.map((inj,index) => {
                     return <InjectResult injCount={index+1} value={inj}/> ;
                 })}
@@ -145,7 +143,7 @@ class PersonList extends React.Component{
           </CardHeader>
           <CardBody style={{width:'100%'}}>
           <CardBody>
-            <CardFieldset style={{marginLeft:'32px'}}>
+            <CardFieldset style={{marginLeft:'16px'}}>
               <CardTitle>인적 사항</CardTitle>
               <DataLine title='이름' value={Data.name}/>
               <DataLine title='주민등록번호' value={Data.ssn}/>
@@ -153,7 +151,7 @@ class PersonList extends React.Component{
               <DataLine title='지역' value={Data.sido}/>
             </CardFieldset>
 
-            <CardFieldset style={{marginLeft:'32px'}}>
+            <CardFieldset style={{marginLeft:'16px'}}>
               <CardTitle style={{ marginTop: '2em' }}>아이디/비밀번호</CardTitle>
               <DataLine title='아이디' value={Data.id}/>
               <DataLine title='비밀번호' value={"*".repeat(Data.pw.length)}/>
