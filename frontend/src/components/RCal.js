@@ -39,7 +39,7 @@ const RCal = ({ day, setDay, setDate }) => {
             sel.setMonth(day.month - 1);
             sel.setDate(day.day);
 
-            if (today <= sel) setDate(day);
+            if (today < sel) setDate(day);
           }}
         >
           예약자리 확인
