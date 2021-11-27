@@ -131,7 +131,7 @@ const Hospital = ({ history }) => {
 
   const handleReservation = () => {
     const mDate = toSqlDatetime(
-      new Date(selDay.year, selDay.month, selDay.day, time, 0, 0),
+      new Date(selDay.year, selDay.month - 1, selDay.day, time, 0, 0),
     );
     const token = getTokenFromCookie();
 
