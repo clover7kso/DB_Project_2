@@ -159,7 +159,7 @@ class PersonList extends React.Component{
           </CardBody>
 
             <CardFieldset style={{ marginTop: '2em',marginLeft:'-64px'}}>
-              <CardLink link="/UserUpdate">정보 수정을 원하시나요?</CardLink>
+              <CardLink to="/UpdateUser">정보 수정을 원하시나요?</CardLink>
             </CardFieldset>
           </CardBody>
         </CardWrapper>
