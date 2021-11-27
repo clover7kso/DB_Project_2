@@ -136,7 +136,7 @@ const Nav = ({ history }) => {
           ? info&&info.type === 'user' 
           ? Tab('병원예약', '/Hospital', page, setPage)
           : Tab('환자정보', '/PatientInfo', page, setPage)
-          : ''}
+          : Tab('병원예약', '/Hospital', page, setPage)}
         {Tab('접종통계', '/Statistic', page, setPage)}
       </CardWrapper>
     </Body>
