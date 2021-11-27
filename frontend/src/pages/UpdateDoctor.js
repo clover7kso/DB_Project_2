@@ -2,8 +2,28 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-import { getTokenFromCookie, handleUpdateDoctor } from '../components/Auth';
+import { getTokenFromCookie } from '../components/Auth';
 import UpdateDoctorComp from '../components/UpdateDoctorComp';
+
+
+export const handleUpdateDoctor = async (id, pw, pwcf) => {
+  if(pw!==pwcf) return {result:false,msg:"Password_Error"};
+
+  console.log(id, pw, pwcf);
+
+  const token = {id: id, pw: pw};
+
+  let res;
+  await axios.get('http://localhost:4000/updateDoctor', {
+    headers:{
+      token:token
+    },params:{pw:pw}
+  }).then(({data})=>{
+    res = data;
+  });
+  return res;
+};
+
 
 const updateDoctor = async (info,id,origin_pw,success) => {
   console.log(info);

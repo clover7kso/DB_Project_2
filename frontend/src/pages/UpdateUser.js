@@ -1,21 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import {
-  CardWrapper,
-  CardHeader,
-  CardHeading,
-  CardBody,
-  CardFieldset,
-  CardInput,
-  CardTitle,
-  CardSelect,
-  CardSelectOption,
-  CardButton,
-} from '../components/Card';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-import { getTokenFromCookie, handleUpdateUser } from '../components/Auth';
+import { getTokenFromCookie } from '../components/Auth';
 import UpdateComp from '../components/UpdateComp';
+
+export const handleUpdateUser = async (id, pw, sido, phone ,pwcf) => {
+
+  const token = getTokenFromCookie();
+
+  if(pw!==pwcf) return {result:false,msg:"Password_Error"};
+  if(isNaN(phone) || phone.length<9 || phone.length>12 ) return {result:false,msg:"Phone_Data_Not_Allowed"};
+
+  console.log(id, pw, sido, phone ,pwcf);
+  let res;
+  await axios.get('http://localhost:4000/updateUser', {
+    headers:{
+      token:token,
+    },
+    params:{pw:pw, sido:sido, phone:phone},
+  })
+  .then(({data})=>{
+    res=data;
+  });
+
+  return res;
+
+};
 
 const update = async (info,id,origin_pw,success) => {
   console.log(info);
@@ -23,22 +34,13 @@ const update = async (info,id,origin_pw,success) => {
   const pwcf = info.pw===''? origin_pw:info.pwcf;
 
   console.log('id: '+id+ '  pw: '+pw+ '   sido: '+info.sido+ '   phone: '+info.phone+ '   pw repeat: '+pwcf);
-  let result;
-  try{
-    result = await handleUpdateUser(id, pw, info.sido, info.phone, pwcf);
-  }catch(msg){
-    console.log('Catched!!')
-    if(msg!==null && msg!==undefined){
-      Swal.fire(
-        '정보 수정에 실패했습니다.',
-         msg,
-        'error',
-      );
-      return false;
-    }
-    else console.log('Error Code Null');
-  } 
+
+  const result = await handleUpdateUser(id, pw, info.sido, info.phone, pwcf);
+  
+  if(result===undefined) return;
+
   console.log(result);
+
   if(result.msg === "Password_Error"){
     Swal.fire(
       '비밀번호가 틀립니다.',
@@ -68,7 +70,7 @@ const update = async (info,id,origin_pw,success) => {
   else{
     Swal.fire(
       '정보 수정에 실패했습니다.',
-      '정보를 한번더 확인해주세요.',
+      '('+'Error '+result.code+')'+result.msg,
       'error',
     );
   }

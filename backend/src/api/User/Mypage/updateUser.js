@@ -9,6 +9,8 @@ export default (app, connection) => {
         [ pw, phone, sido, id ],
         (error, data) => {
           if (error) throw error;
+          console.log(error);
+          console.log(data);
           res.send({ result: true, msg: '개인정보 변경이 완료되었습니다.' });
         },
       );
