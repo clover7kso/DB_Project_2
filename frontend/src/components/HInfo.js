@@ -38,7 +38,7 @@ const ItemIcon = styled.img`
   height: 16px;
 `;
 
-export const HInfo = ({ orginfo }) => (
+export const HInfo = ({ orginfo, openModal }) => (
   <CardWrapper
     style={{
       marginBottom: '32px',
@@ -77,7 +77,10 @@ export const HInfo = ({ orginfo }) => (
                 {orginfo.lunchEndTm.substr(2, 4)}
               </ItemInfo>
             </ItemWrapper>
-            <CardButton style={{ width: '100%', marginTop: '24px' }}>
+            <CardButton
+              style={{ width: '100%', marginTop: '24px' }}
+              onClick={openModal}
+            >
               백신 예약하기
             </CardButton>
           </Body>

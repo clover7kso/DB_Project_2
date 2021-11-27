@@ -87,7 +87,7 @@ const Tab = (title, url, page, setPage) => {
 //홈페이지 로고, 통계, 마이페이지, 로그인
 const Nav = ({ history }) => {
   const info = getInfoFromCookie();
-  const [page, setPage] = useState('/');
+  const [page, setPage] = useState(window.location.pathname);
   return (
     <Body>
       <CardWrapper style={{ paddingTop: 0, paddingBottom: 0 }}>
@@ -127,12 +127,16 @@ const Nav = ({ history }) => {
       ) : null}
       <CardWrapper style={{ paddingTop: 32 }}>
         {info
+          ? info&&info.type === 'user' 
           ? Tab('마이페이지', '/MyPage', page, setPage)
+          : Tab('마이페이지', '/DoctorMyPage', page, setPage)
           : Tab('로그인', '/Login', page, setPage)}
         {Tab('홈', '/', page, setPage)}
-        {info&&info.type === 'user' 
-          ? Tab('병원예약', '/Hospital', page, setPage) 
-          : Tab('환자정보', '/PatientInfo', page, setPage)}
+        {info
+          ? info&&info.type === 'user' 
+          ? Tab('병원예약', '/Hospital', page, setPage)
+          : Tab('환자정보', '/PatientInfo', page, setPage)
+          : Tab('병원예약', '/Hospital', page, setPage)}
         {Tab('접종통계', '/Statistic', page, setPage)}
       </CardWrapper>
     </Body>

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import HInfo from '../components/HInfo';
 import HList from '../components/HList';
 import HSearch from '../components/HSearch';
+import HReserv from '../components/HReserv';
 
 const Body = styled.div``;
 
@@ -76,6 +77,23 @@ const Hospital = ({ history }) => {
     }
   }, [hcode]);
 
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const openModal = () => {
+    console.log('Open Modal:' + modalIsOpen);
+    setIsOpen(true);
+  };
+  const closeModal = () => {
+    console.log('Close Modal:' + modalIsOpen);
+    setIsOpen(false);
+  };
+
+  const today = new Date();
+  const defaultValue = {
+    year: today.getFullYear(),
+    month: today.getMonth(),
+    day: today.getDay(),
+  };
+  const [selectedDay, setSelectedDay] = useState(defaultValue);
   return (
     <Body>
       {HSearch({
@@ -87,7 +105,8 @@ const Hospital = ({ history }) => {
         setSelSi,
       })}
       {HList({ selSido, selSi, hostpitals, next, setHcode })}
-      {HInfo({ orginfo })}
+      {HInfo({ orginfo, openModal })}
+      {HReserv({ modalIsOpen, closeModal, selectedDay, setSelectedDay })}
     </Body>
   );
 };

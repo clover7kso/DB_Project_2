@@ -2,76 +2,124 @@ import React from 'react';
 import {
   CardWrapper,
   CardBody,
+  CardTitle,
   CardHeader,
   CardHeading,
   CardFieldset,
   CardLink,
 } from '../components/Card';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
-const Body = styled.div`
+const Col = styled.div`
   align-items: 'center';
   justify-content: 'center';
 `;
 
-const Table = styled.table`
-border=0;
+
+const Body = styled.div`
+  margin-top: 12px;
 `;
 
-const T_Col = styled.tr`
+const ItemWrapper = styled.div`
+  padding-bottom: 4px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 `;
 
-const T_Row = styled.td`
+const ItemName = styled.div`
+  padding-top: 0.1em;
+  padding-left: 1em;
+  font-family: inherit;
+  text-align: left;
+  width: 20%;
+  font-size: 12px;
+  color: #2c2c2c;
+`;
+const ItemInfo = styled.div`
+  padding-top: 0.1em;
+  padding-left: 1em;
+  font-family: inherit;
+  text-align: left;
+  width: 100%;
+  font-size: 12px;
+  color: #2c2c2c;
 `;
 
-const T_RowBold = styled.th`
-`;
-
-export class MyPageComp extends React.Component {
-  render() {
-    var Data = this.props.data;
-    var hospital = this.props.hospital;
-
-    return (
-      <Body style={{}}>
-        <CardWrapper>
+const DateTransForm = (raw_date)=>{
+  const d_t = raw_date.split(' ');
+  const day = d_t[0].split('-');
+  const time = d_t[1].split(':');
+  return day[0]+'년 '+day[1]+'월 '+day[2]+'일 / '+time[0]+'시 '+time[1]+'분';
+}
+class DataLine extends React.Component{
+  render(){
+      var name = this.props.title;
+      var value = this.props.value;
+      var icon = this.props.icon;
+      return(
+        <ItemWrapper style={{marginLeft:'-12px'}}>
+          <ItemName>{name}</ItemName>
+          <ItemInfo> : {value}</ItemInfo>
+        </ItemWrapper>
+      );
+  }
+}
+class PersonList extends React.Component{
+    render(){
+        var Data = this.props.value;
+        return(
+        <CardWrapper style={{width:'100%'}}>
           <CardHeader>
-            <CardHeading>회원 정보 (의사)</CardHeading>
+            <CardHeading style={{marginBottom:'0px'}}>회원 정보</CardHeading>
           </CardHeader>
-
+          <CardBody style={{width:'100%'}}>
           <CardBody>
-            <Table>
-                <T_Col>
-                    <T_RowBold colSpan="2">인적사항</T_RowBold>
-                </T_Col>
-                <T_Col>
-                    <T_RowBold>의사번호</T_RowBold>
-                    <T_Row>{Data.id}</T_Row>
-                </T_Col>
-                <T_Col>
-                    <T_RowBold>이름</T_RowBold>
-                    <T_Row>{Data.name}</T_Row>
-                </T_Col>
-                <T_Col>
-                    <T_RowBold>소속기관(번호)</T_RowBold>
-                    <T_Row>{hospital}({Data.orgcd})</T_Row>
-                </T_Col>
-                <T_Col>
-                    <T_RowBold colSpan="2">아이디/패스워드</T_RowBold>
-                </T_Col>
-                <T_Col>
-                    <T_RowBold>비밀번호</T_RowBold>
-                    <T_Row>{Data.pw}</T_Row>
-                </T_Col>
-            </Table>
-            <CardFieldset>
-              <CardLink link="/DoctorUpdate">정보 수정을 원하시나요?</CardLink>
+            {/*id, pw, name, orgnm, orgTlno, orgZipaddr, lunchSttTm, lunchEndTm, sttTm, endTm*/}
+            <CardFieldset style={{marginLeft:'16px'}}>
+              <CardTitle>인적 사항</CardTitle>
+              <DataLine title='이름' value={Data.name}/>
+              <DataLine title='의사번호' value={Data.id}/>
+            </CardFieldset>
+            
+            <CardFieldset style={{marginLeft:'16px'}}>
+              <CardTitle>병원 정보</CardTitle>
+              <DataLine title='병원명' value={Data.orgnm}/>
+              <DataLine title='연락처' value={Data.orgTlno}/>
+              <DataLine title='주소' value={Data.orgZipaddr}/>
+              <DataLine title='운영시간' value={Data.sttTm+' ~ '+Data.endTm}/>
+              <DataLine title='점심시간' value={Data.lunchSttTm+' ~ '+Data.lunchEndTm}/>
+            </CardFieldset>
+
+            <CardFieldset style={{marginLeft:'16px'}}>
+              <CardTitle>아이디/비밀번호</CardTitle>
+              <DataLine title='아이디' value={Data.id}/>
+              <DataLine title='비밀번호' value={"*".repeat(Data.pw.length)}/>
+            </CardFieldset>
+          </CardBody>
+
+            <CardFieldset style={{ marginTop: '2em',marginLeft:'-64px'}}>
+              <CardLink link="/UserUpdate">정보 수정을 원하시나요?</CardLink>
             </CardFieldset>
           </CardBody>
         </CardWrapper>
-      </Body>
+        );
+    }
+}
+
+export class MyPageComp extends React.Component {
+  render() {
+    const Data = this.props.data;
+    console.log(Data);
+
+    if(Data!==undefined){
+    return (
+      <div>
+        <PersonList value={Data}/>
+      </div>
     );
+    }else return <div>로딩 중....</div>;
   }
 }
 
