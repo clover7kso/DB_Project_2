@@ -47,12 +47,6 @@ const ItemInfo = styled.div`
   color: #2c2c2c;
 `;
 
-const DateTransForm = (raw_date)=>{
-  const d_t = raw_date.split(' ');
-  const day = d_t[0].split('-');
-  const time = d_t[1].split(':');
-  return day[0]+'년 '+day[1]+'월 '+day[2]+'일 / '+time[0]+'시 '+time[1]+'분';
-}
 class DataLine extends React.Component{
   render(){
       var name = this.props.title;
@@ -66,13 +60,26 @@ class DataLine extends React.Component{
       );
   }
 }
+
+const DateTransForm = (raw_date)=>{
+  const time = raw_date.split(':');
+  return time[1]+':'+time[2];
+}
+
+const zeroPadding = (value,len)=>{
+  return "0".repeat(len-value.length) + value;
+}
+
+const LunchTransForm = (raw_date)=>{
+  return zeroPadding(''+raw_date/100,2)+':'+zeroPadding(''+raw_date%100,2);
+}
 class PersonList extends React.Component{
     render(){
         var Data = this.props.value;
         return(
         <CardWrapper style={{width:'100%'}}>
           <CardHeader>
-            <CardHeading style={{marginBottom:'0px'}}>회원 정보</CardHeading>
+            <CardHeading style={{marginBottom:'0px'}}>회원 정보 (의사)</CardHeading>
           </CardHeader>
           <CardBody style={{width:'100%'}}>
           <CardBody>
@@ -88,8 +95,8 @@ class PersonList extends React.Component{
               <DataLine title='병원명' value={Data.orgnm}/>
               <DataLine title='연락처' value={Data.orgTlno}/>
               <DataLine title='주소' value={Data.orgZipaddr}/>
-              <DataLine title='운영시간' value={Data.sttTm+' ~ '+Data.endTm}/>
-              <DataLine title='점심시간' value={Data.lunchSttTm+' ~ '+Data.lunchEndTm}/>
+              <DataLine title='운영시간' value={DateTransForm(Data.sttTm)+' ~ '+DateTransForm(Data.endTm)}/>
+              <DataLine title='점심시간' value={LunchTransForm(Data.lunchSttTm)+' ~ '+LunchTransForm(Data.lunchEndTm)}/>
             </CardFieldset>
 
             <CardFieldset style={{marginLeft:'16px'}}>
@@ -100,7 +107,7 @@ class PersonList extends React.Component{
           </CardBody>
 
             <CardFieldset style={{ marginTop: '2em',marginLeft:'-64px'}}>
-              <CardLink link="/UserUpdate">정보 수정을 원하시나요?</CardLink>
+              <CardLink to="/UpdateDoctor">정보 수정을 원하시나요?</CardLink>
             </CardFieldset>
           </CardBody>
         </CardWrapper>

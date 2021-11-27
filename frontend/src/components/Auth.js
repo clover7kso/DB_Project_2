@@ -77,3 +77,21 @@ export const handleUpdateUser = async (id, pw, sido, phone ,pwcf) => {
     return {result:false,msg:"QuerryError"};
   }
 };
+
+export const handleUpdateDoctor = async (id, pw, pwcf) => {
+  if(pw!==pwcf) return {result:false,msg:"Password_Error"};
+
+  console.log(id, pw, pwcf);
+
+  const res = await axios.post('http://localhost:4000/updateDoctor', {
+    id: id,
+    pw: pw
+  });
+  if (res.result) {
+    console.log('업데이트 성공!');
+    return {result:true,msg:"Sucess"};
+  } else {
+    console.log('업데이트 실패');
+    return {result:false,msg:"QuerryError"};
+  }
+};
