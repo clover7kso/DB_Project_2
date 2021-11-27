@@ -15,6 +15,7 @@ import MyPage from './pages/MyPage';
 import DoctorMyPage from './pages/DoctorMyPage';
 import PatientInfo from './pages/PatientInfo';
 import UpdateUser from './pages/UpdateUser';
+import UpdateDoctor from './pages/UpdateDoctor';
 
 const Body = styled.div`
   display: flex;
@@ -49,6 +50,7 @@ class App extends Component {
             <Route path="/DoctorMyPage" component={DoctorMyPage} />
             <Route path='/PatientInfo' component={PatientInfo} />
             <Route path='/UpdateUser' component={UpdateUser} />
+            <Route path='/UpdateDoctor' component={UpdateDoctor} />
           </Switch>
         </Col>
       </Body>
