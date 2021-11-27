@@ -56,7 +56,7 @@ const Register = ({ history }) => {
     <div>
       <CardWrapper>
         <CardHeader>
-          <CardHeading>의사 회원가입</CardHeading>
+          <CardHeading>국민 회원가입</CardHeading>
         </CardHeader>
 
         <CardBody>
