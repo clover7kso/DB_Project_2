@@ -3,10 +3,17 @@ import { CardButtonNoHover } from '../components/Card';
 import 'react-modern-calendar-datepicker/lib/DatePicker.css';
 import { Calendar } from 'react-modern-calendar-datepicker';
 
-const Wrap = styled.div``;
-
+const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+`;
+const Main = styled.div`
+  margin-top: 7px;
+  flex: 1;
+`;
 const ButtonWrapper = styled.div`
-  padding-bottom: 16px;
   width: 84%;
   padding-left: 8%;
   padding-right: 8%;
@@ -16,16 +23,18 @@ const ButtonWrapper = styled.div`
   justify-content: center;
 `;
 
-const RCal = ({ day, setDay, setDate }) => {
+const RCal = ({ day, setDay, setSelDay }) => {
   return (
     <Wrap>
-      <Calendar
-        value={day}
-        onChange={setDay}
-        colorPrimary="#e5195f" // added this
-        calendarClassName="custom-calendar" // and this
-        shouldHighlightWeekends
-      />
+      <Main>
+        <Calendar
+          value={day}
+          onChange={setDay}
+          colorPrimary="#e5195f" // added this
+          calendarClassName="custom-calendar" // and this
+          shouldHighlightWeekends
+        />
+      </Main>
       <ButtonWrapper>
         <CardButtonNoHover
           style={{
@@ -39,7 +48,7 @@ const RCal = ({ day, setDay, setDate }) => {
             sel.setMonth(day.month - 1);
             sel.setDate(day.day);
 
-            if (today < sel) setDate(day);
+            if (today < sel) setSelDay(day);
           }}
         >
           예약자리 확인

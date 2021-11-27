@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { CardButtonNoHover } from './Card';
-import { CardTitle } from '../components/Card';
+import { CardTitle } from './Card';
 
 const Wrap = styled.div`
   display: flex;
@@ -16,6 +16,7 @@ const Main = styled.div`
   flex-direction: column;
   justify-content: space-around;
 `;
+
 const Body = styled.div`
   display: flex;
   align-items: center;
@@ -32,6 +33,8 @@ const ItemBody = styled.div`
   background-color: ${(props) => (props.selected ? '#e5195f' : 'white')};
   border: 0;
   border-radius: 35px;
+  padding-top: 12px;
+  padding-bottom: 12px;
   outline: 0;
 `;
 
@@ -44,13 +47,14 @@ const ButtonWrapper = styled.div`
 const ItemTitle = styled(CardTitle)`
   width: 40%;
   text-align: center;
+  font-size: 18px;
   color: ${(props) => (props.selected ? 'white' : '#2a2a2a')}!important;
 `;
 
-const RTime = ({ canReserv, setSelDay, time, setTime, setSelTime }) => {
+const RVac = ({ canSelectVaccine, setSelTime, vac, setVac, setSelVac }) => {
   return (
     <Wrap>
-      <Body>
+      <Body style={{ flexDirection: 'row' }}>
         <CardTitle
           style={{
             color: '#e5195f',
@@ -59,7 +63,7 @@ const RTime = ({ canReserv, setSelDay, time, setTime, setSelTime }) => {
             fontSize: '20px',
           }}
         >
-          시간
+          백신종류
         </CardTitle>
         <CardTitle
           style={{
@@ -69,20 +73,20 @@ const RTime = ({ canReserv, setSelDay, time, setTime, setSelTime }) => {
             fontSize: '20px',
           }}
         >
-          잔여석
+          전국백신
         </CardTitle>
       </Body>
       <Main>
-        {canReserv.map((item) => {
+        {canSelectVaccine.map((item) => {
           return (
             <ItemBody
-              selected={time === item.key}
+              selected={vac === item.key}
               onClick={() => {
-                if (item.value > 0) setTime(item.key);
+                if (item.value > 0) setVac(item.key);
               }}
             >
-              <ItemTitle selected={time === item.key}>{item.key}시</ItemTitle>
-              <ItemTitle selected={time === item.key}>{item.value}석</ItemTitle>
+              <ItemTitle selected={vac === item.key}>{item.key}</ItemTitle>
+              <ItemTitle selected={vac === item.key}>{item.value}개</ItemTitle>
             </ItemBody>
           );
         })}
@@ -92,20 +96,20 @@ const RTime = ({ canReserv, setSelDay, time, setTime, setSelTime }) => {
           style={{
             width: '48%',
           }}
-          onClick={() => setSelDay()}
+          onClick={() => setSelTime()}
         >
-          다른날짜
+          뒤로가기
         </CardButtonNoHover>
         <CardButtonNoHover
           style={{
             width: '48%',
           }}
-          onClick={() => setSelTime(time)}
+          onClick={() => setSelVac(vac)}
         >
-          백신선택
+          예약하기
         </CardButtonNoHover>
       </ButtonWrapper>
     </Wrap>
   );
 };
-export default RTime;
+export default RVac;

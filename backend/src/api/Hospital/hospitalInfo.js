@@ -14,12 +14,12 @@ export default async (app, connection) => {
             if (error1) console.log(error1);
             const result1 = data1;
             console.log(result1);
-            result[0].canSelectVaccine = {
-              화이자: result1[3]['COUNT(*)'],
-              모더나: result1[0]['COUNT(*)'],
-              아스트라제네카: result1[1]['COUNT(*)'],
-              얀센: result1[2]['COUNT(*)'],
-            };
+            result[0].canSelectVaccine = [
+              { key: '화이자', value: result1[3]['COUNT(*)'] },
+              { key: '모더나', value: result1[0]['COUNT(*)'] },
+              { key: '아스트라제네카', value: result1[1]['COUNT(*)'] },
+              { key: '얀센', value: result1[2]['COUNT(*)'] },
+            ];
             console.log(result);
             return res.send(result);
           },

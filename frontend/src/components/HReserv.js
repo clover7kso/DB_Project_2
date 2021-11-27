@@ -5,17 +5,18 @@ import img_close from '../imgs/close.png';
 import '../imgs/share.css';
 import RCal from './RCal';
 import RTime from './RTime';
+import RVac from './RVac';
 
 const Wrap = styled.div`
   border-radius: 12px;
   padding-top: 12px;
+  padding-bottom: 32px;
   width: 22em;
-  min-height: 26.5em;
+  height: 28em;
   background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
 `;
 
 const Body = styled.div`
@@ -33,7 +34,7 @@ const CloseButton = styled.img`
   height: 24px;
   cursor: pointer;
   margin-left: -36px;
-  margin-top: -392px;
+  margin-top: -442px;
   z-index: 1000;
 `;
 
@@ -43,11 +44,18 @@ const HReserv = ({
   closeModal,
   day,
   setDay,
-  date,
-  setDate,
+  selDay,
+  setSelDay,
   canReserv,
   time,
   setTime,
+  selTime,
+  setSelTime,
+  canSelectVaccine,
+  vac,
+  setVac,
+  selVac,
+  setSelVac,
 }) => {
   console.log('m:' + modalIsOpen);
   return (
@@ -61,9 +69,23 @@ const HReserv = ({
       >
         <Body>
           <Wrap>
-            {date === undefined
-              ? RCal({ day, setDay, setDate })
-              : RTime({ canReserv, setDate, time, setTime })}
+            {selDay === undefined
+              ? RCal({ day, setDay, setSelDay })
+              : selTime === undefined
+              ? RTime({
+                  canReserv,
+                  setSelDay,
+                  time,
+                  setTime,
+                  setSelTime,
+                })
+              : RVac({
+                  canSelectVaccine,
+                  setSelTime,
+                  vac,
+                  setVac,
+                  setSelVac,
+                })}
           </Wrap>
           <CloseButton src={img_close} onClick={closeModal} />
         </Body>

@@ -73,6 +73,7 @@ const Hospital = ({ history }) => {
         .get('http://localhost:4000/hospitalInfo', { params: { orgcd: hcode } })
         .then(({ data }) => {
           setOrginfo(data[0]);
+          setVac(data[0].canSelectVaccine[0].key);
         });
     }
   }, [hcode]);
@@ -80,12 +81,16 @@ const Hospital = ({ history }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const openModal = () => {
     console.log('Open Modal:' + modalIsOpen);
-    console.log(date);
+    setSelDay();
+    setSelTime();
+    setSelVac();
     setIsOpen(true);
   };
   const closeModal = () => {
     console.log('Close Modal:' + modalIsOpen);
-    setDate();
+    setSelDay();
+    setSelTime();
+    setSelVac();
     setIsOpen(false);
   };
 
@@ -96,7 +101,7 @@ const Hospital = ({ history }) => {
     day: today.getDate(),
   };
   const [day, setDay] = useState(defaultValue);
-  const [date, setDate] = useState();
+  const [selDay, setSelDay] = useState();
 
   const [canReserv, setCanReserv] = useState();
   useEffect(() => {
@@ -118,6 +123,10 @@ const Hospital = ({ history }) => {
   console.log(canReserv);
 
   const [time, setTime] = useState();
+  const [selTime, setSelTime] = useState();
+
+  const [vac, setVac] = useState();
+  const [selVac, setSelVac] = useState();
 
   return (
     <Body>
@@ -131,18 +140,27 @@ const Hospital = ({ history }) => {
       })}
       {HList({ selSido, selSi, hostpitals, next, setHcode })}
       {HInfo({ orginfo, openModal })}
-      {HReserv({
-        orgcd: hcode,
-        modalIsOpen,
-        closeModal,
-        day,
-        setDay,
-        date,
-        setDate,
-        canReserv,
-        time,
-        setTime,
-      })}
+      {orginfo
+        ? HReserv({
+            orgcd: hcode,
+            modalIsOpen,
+            closeModal,
+            day,
+            setDay,
+            selDay,
+            setSelDay,
+            canReserv,
+            time,
+            setTime,
+            selTime,
+            setSelTime,
+            canSelectVaccine: orginfo.canSelectVaccine,
+            vac,
+            setVac,
+            selVac,
+            setSelVac,
+          })
+        : null}
     </Body>
   );
 };
