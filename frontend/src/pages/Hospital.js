@@ -140,7 +140,7 @@ const Hospital = ({ history }) => {
         headers: {
           token: token,
         },
-        params: { vaccine_name: selVac, orgcd: hcode, reservation_time: mDate },
+        params: { vaccine_name: vac, orgcd: hcode, reservation_time: mDate },
       })
       .then(({ data }) => {
         console.log(data);
