@@ -11,12 +11,12 @@ export const handleUpdateDoctor = async (id, pw, pwcf) => {
 
   console.log(id, pw, pwcf);
 
-  const token = {id: id, pw: pw};
+  const token = getTokenFromCookie();
 
   let res;
   await axios.get('http://localhost:4000/updateDoctor', {
     headers:{
-      token:token
+      token:token,
     },params:{pw:pw}
   }).then(({data})=>{
     res = data;
