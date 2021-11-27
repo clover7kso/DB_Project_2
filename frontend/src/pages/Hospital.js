@@ -5,6 +5,9 @@ import HInfo from '../components/HInfo';
 import HList from '../components/HList';
 import HSearch from '../components/HSearch';
 import HReserv from '../components/HReserv';
+import { getTokenFromCookie } from '../components/Auth';
+import { toSqlDatetime } from '../util';
+import Swal from 'sweetalert2';
 
 const Body = styled.div``;
 
@@ -128,6 +131,38 @@ const Hospital = ({ history }) => {
   const [vac, setVac] = useState();
   const [selVac, setSelVac] = useState();
 
+  const handleReservation = () => {
+    const mDate = toSqlDatetime(
+      new Date(selDay.year, selDay.month, selDay.day, time, 0, 0),
+    );
+    const token = getTokenFromCookie();
+
+    axios
+      .get('http://localhost:4000/reserveVaccine', {
+        headers: {
+          token: token,
+        },
+        params: { vaccine_name: selVac, orgcd: hcode, reservation_time: mDate },
+      })
+      .then(({ data }) => {
+        console.log(data);
+        closeModal();
+        if (data === true) {
+          Swal.fire(
+            '예약이 완료되었습니다.',
+            '예약날짜에 맞추어 병원에 방문바랍니다.',
+            'success',
+          );
+        } else {
+          Swal.fire(
+            '예약이 실패하였습니다.',
+            '이미 누가 예약했거나 시스템 문제가 있습니다.',
+            'error',
+          );
+        }
+      });
+  };
+
   return (
     <Body>
       {HSearch({
@@ -159,6 +194,7 @@ const Hospital = ({ history }) => {
             setVac,
             selVac,
             setSelVac,
+            handleReservation,
           })
         : null}
     </Body>

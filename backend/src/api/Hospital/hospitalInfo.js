@@ -7,21 +7,21 @@ export default async (app, connection) => {
       [orgcd],
       (error, data) => {
         if (error) console.log(error);
-        const result = data;
         connection.query(
-          'SELECT name, COUNT(*) FROM VACCINE V WHERE NOT EXISTS(SELECT number FROM INJECTION I WHERE I.number = V.number) GROUP BY name;',
+          'SELECT name as mkey, COUNT(*) as value FROM VACCINE V WHERE NOT EXISTS(SELECT number FROM INJECTION I WHERE I.number = V.number) GROUP BY name;',
           (error1, data1) => {
             if (error1) console.log(error1);
-            const result1 = data1;
-            console.log(result1);
-            result[0].canSelectVaccine = [
-              { key: '화이자', value: result1[3]['COUNT(*)'] },
-              { key: '모더나', value: result1[0]['COUNT(*)'] },
-              { key: '아스트라제네카', value: result1[1]['COUNT(*)'] },
-              { key: '얀센', value: result1[2]['COUNT(*)'] },
-            ];
-            console.log(result);
-            return res.send(result);
+
+            for (var i = 0; i < data1.length; i++) {
+              if (data1[i].hasOwnProperty('mkey')) {
+                data1[i].key = data1[i].mkey;
+                delete data1[i].mkey;
+              }
+            }
+
+            data[0].canSelectVaccine = data1;
+            console.log(data1);
+            return res.send(data);
           },
         );
       },

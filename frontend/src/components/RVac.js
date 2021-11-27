@@ -51,7 +51,14 @@ const ItemTitle = styled(CardTitle)`
   color: ${(props) => (props.selected ? 'white' : '#2a2a2a')}!important;
 `;
 
-const RVac = ({ canSelectVaccine, setSelTime, vac, setVac, setSelVac }) => {
+const RVac = ({
+  canSelectVaccine,
+  setSelTime,
+  vac,
+  setVac,
+  setSelVac,
+  handleReservation,
+}) => {
   return (
     <Wrap>
       <Body style={{ flexDirection: 'row' }}>
@@ -104,7 +111,10 @@ const RVac = ({ canSelectVaccine, setSelTime, vac, setVac, setSelVac }) => {
           style={{
             width: '48%',
           }}
-          onClick={() => setSelVac(vac)}
+          onClick={() => {
+            setSelVac(vac);
+            handleReservation();
+          }}
         >
           예약하기
         </CardButtonNoHover>

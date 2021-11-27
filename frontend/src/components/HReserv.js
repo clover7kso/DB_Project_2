@@ -56,6 +56,7 @@ const HReserv = ({
   setVac,
   selVac,
   setSelVac,
+  handleReservation,
 }) => {
   console.log('m:' + modalIsOpen);
   return (
@@ -85,6 +86,7 @@ const HReserv = ({
                   vac,
                   setVac,
                   setSelVac,
+                  handleReservation,
                 })}
           </Wrap>
           <CloseButton src={img_close} onClick={closeModal} />
