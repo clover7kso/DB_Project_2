@@ -79,6 +79,9 @@ const HReserv = ({
                   time,
                   setTime,
                   setSelTime,
+                  setVac,
+                  setSelVac,
+                  canSelectVaccine,
                 })
               : RVac({
                   canSelectVaccine,

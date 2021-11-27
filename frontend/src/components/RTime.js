@@ -47,7 +47,16 @@ const ItemTitle = styled(CardTitle)`
   color: ${(props) => (props.selected ? 'white' : '#2a2a2a')}!important;
 `;
 
-const RTime = ({ canReserv, setSelDay, time, setTime, setSelTime }) => {
+const RTime = ({
+  canReserv,
+  setSelDay,
+  time,
+  setTime,
+  setSelTime,
+  setVac,
+  setSelVac,
+  canSelectVaccine,
+}) => {
   return (
     <Wrap>
       <Body>
@@ -100,7 +109,11 @@ const RTime = ({ canReserv, setSelDay, time, setTime, setSelTime }) => {
           style={{
             width: '48%',
           }}
-          onClick={() => setSelTime(time)}
+          onClick={() => {
+            setSelTime(time);
+            setVac(canSelectVaccine[0].key);
+            setSelVac(canSelectVaccine[0].key);
+          }}
         >
           백신선택
         </CardButtonNoHover>

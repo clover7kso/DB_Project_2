@@ -76,7 +76,6 @@ const Hospital = ({ history }) => {
         .get('http://localhost:4000/hospitalInfo', { params: { orgcd: hcode } })
         .then(({ data }) => {
           setOrginfo(data[0]);
-          setVac(data[0].canSelectVaccine[0].key);
         });
     }
   }, [hcode]);
@@ -123,7 +122,6 @@ const Hospital = ({ history }) => {
           setTime(data[0].key);
         });
   }, [day]);
-  console.log(canReserv);
 
   const [time, setTime] = useState();
   const [selTime, setSelTime] = useState();
