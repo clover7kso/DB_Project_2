@@ -135,6 +135,41 @@ export const CardButtonNoHover = styled.button`
   }
 `;
 
+export const CardButtonAble = styled.button`
+  display: block;
+  width: 100%;
+  padding: 12px 0;
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  border: 0;
+  border-radius: 35px;
+  outline: 0;
+  background-color: #e5195f;
+  cursor: pointer;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
+  margin-left: 8px;
+
+  &:hover{
+    border: 5px;
+    border-color: #000000;
+  }
+
+  &:disabled {
+    background-color: #e2e2e2;
+    color: #a2a2a2;
+    cursor: default;
+  }
+
+  &:active {
+    background-color: #48195f;
+    color: #a2a2a2;
+    cursor: default;
+  }
+`;
+
 export const CardLink = styled(Link)`
   display: inline-block;
   font-size: 12px;
