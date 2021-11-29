@@ -27,6 +27,7 @@ import injectionTable from './api/Doctor/injectionTable.js';
 import updateInjectionTable from './api/Doctor/updateInjectionTable.js';
 import reserveVaccine from './api/Vaccine/reserveVaccine.js';
 import testJWT from './api/User/testJWT.js';
+import corona from './api/GovData/corona.js';
 
 const connection = init();
 
@@ -73,6 +74,7 @@ injectionTable(app, connection);
 updateInjectionTable(app, connection);
 reserveVaccine(app, connection);
 testJWT(app, connection);
+corona(app, connection);
 
 app.listen(app.get('port'), () => {
   console.log('Port : ' + app.get('port'));
