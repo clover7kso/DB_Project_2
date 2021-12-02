@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom';
 import { getInfoFromCookie, logout } from '../components/Auth';
 import { NavIcon } from '../components/NavIcon';
 import base_icon from '../imgs/base_icon.png';
+import { withRouter } from 'react-router';
 
 const Body = styled.div`
   position: fixed;
@@ -117,7 +118,7 @@ const Nav = ({ history }) => {
               style={{ cursor: 'pointer' }}
               onClick={() => {
                 logout();
-                window.location.reload();
+                history.push("/");
               }}
             >
               로그아웃
@@ -143,4 +144,4 @@ const Nav = ({ history }) => {
   );
 };
 
-export default Nav;
+export default withRouter(Nav);

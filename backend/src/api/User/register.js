@@ -19,8 +19,9 @@ export default (app, connection) => {
         'INSERT INTO user(ssn, id, pw, phone, name, sido) VALUES (?,?,?,?,?,?);',
         [ssn, id, pw, phone, name, sido],
         (error, data) => {
-          if (error) throw error;
-          res.send({ result: true, msg: '회원가입이 완료되었습니다.' });
+          if (error) res.send({ result: false, msg: error.sqlMessage });
+          else 
+            res.send({ result: true, msg: '회원가입이 완료되었습니다.' });
         },
       );
   });

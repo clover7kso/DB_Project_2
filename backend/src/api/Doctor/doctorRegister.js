@@ -13,8 +13,9 @@ export default (app, connection) => {
         'INSERT INTO DOCTOR(id, pw, name, orgcd) VALUES (?,?,?,?);',
         [id, pw, name, orgcd],
         (error, data) => {
-          if (error) throw error;
-          res.send({ result: true, msg: '의사회원가입이 완료되었습니다.' });
+          if (error) res.send({ result: false, msg: error.sqlMessage });
+          else
+            res.send({ result: true, msg: '의사회원가입이 완료되었습니다.' });
         },
       );
   });
