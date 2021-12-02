@@ -18,6 +18,7 @@ import { getTokenFromCookie } from '../components/Auth';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import styled from 'styled-components';
 import Swal from 'sweetalert2';
+//import PDetail from '../components/PDetail';
 
 
 const Col = styled.div`
@@ -57,7 +58,7 @@ const ItemInfo = styled.div`
   color: #2c2c2c;
 `;
 
-const ItemWrapperHover = styled.div`
+const ItemWrapperSel = styled.div`
   padding:8px;
   margin-bottom: 4px;
   display: flex;
@@ -93,21 +94,35 @@ class PTableLine extends React.Component{
 
     return (
       <CardFieldset>
-        <ItemWrapperHover style={selected?{backgroundColor:'#AAAAAA'}:{}} onClick={()=>this.props.func(vnum)}>
+        <ItemWrapperSel style={selected?{backgroundColor:'#AAAAAA'}:{}} onClick={()=>this.props.func(vnum)}>
           <ItemInfo>{item.vnumber}</ItemInfo>
           <ItemInfo>{item.ssn}</ItemInfo>
           <ItemInfo>{item.inject_date}</ItemInfo>
           <ItemInfo>{item.reservation_time}</ItemInfo>
           <ItemInfo>{item.dname}</ItemInfo>
-        </ItemWrapperHover>
+        </ItemWrapperSel>
       </CardFieldset>
     );
   }
 }
 
 const PatientInfo = ({ history }) => {
-    var  inj_date;
+    var inj_date = new Date();
+    const [defaultValue,setDay]=useState(new Date());
+    useEffect(()=>{
+      ;
+    });
+    var ModalVisible = false;
     const [vac_num,setVacNum] = useState('');
+    const [modalIsOpen, setIsOpen] = useState(false);
+    const openModal = () => {
+      console.log('Open Modal:' + modalIsOpen);
+      setIsOpen(true);
+    };
+    const closeModal = () => {
+      console.log('Close Modal:' + modalIsOpen);
+      setIsOpen(false);
+    };
 
     const [buttonAble, setButtonAble] = useState(false);
     useEffect(()=>setButtonAble(vac_num!==''),[vac_num]);
@@ -125,7 +140,8 @@ const PatientInfo = ({ history }) => {
     console.log(injectionTable);
 
     const NowDate = ()=>{
-      var date = new Date();
+      var date = new Date();              //get GMT
+      date.setHours(date.getHours() + 9); //add Korean Time
       return date.toISOString().replace("T"," ").split('.')[0];
 
     }
@@ -160,6 +176,40 @@ const PatientInfo = ({ history }) => {
     };
     console.log(injectionTable);
 
+    const zeroPadding = (value,len)=>{
+      return "0".repeat(len-value.length) + value;
+    }
+
+    const [hourList,setHourList] = useState([]);
+    useEffect(()=>{
+      var temp=[];
+      for(var i=0;i<24;i++)
+        temp.push(zeroPadding(i,2));
+      setHourList(temp);
+    });
+    const [msList,setMSList] = useState([]);
+    useEffect(()=>{
+      var temp=[];
+      for(var i=0;i<60;i++)
+        temp.push(zeroPadding(i,2));
+      setMSList(temp);
+    });
+
+    const setVacDate = (day)=>{
+      inj_date.setFullYear(day.getFullYear());
+      inj_date.setMonth(day.getMonth());
+      inj_date.setSeconds(day.getSeconds());
+    };
+    const setVacTime = (day)=>{
+      inj_date.setHours(day.getHours());
+      inj_date.setMinutes(day.getMinutes());
+      inj_date.setSeconds(day.setSeconds());
+
+      //inj_date.setHours(inj_date.getHours()+9)
+      //closeModal();
+      //ChangeInject(vac_num,inj_date.toISOString().replace("T"," ").split('.')[0]);
+    };
+
     return (
         <Body>
           <Col>
@@ -171,9 +221,11 @@ const PatientInfo = ({ history }) => {
                 
                   <CardFieldset style={{display:'flex'}}>
                     <CardButtonAble disabled={!buttonAble} onClick={()=>ChangeInject(vac_num,NowDate())}>접종완료</CardButtonAble> 
-                    <CardButtonAble disabled={!buttonAble}>완료일자 변경</CardButtonAble> 
+                    {/*<CardButtonAble disabled={!buttonAble} onClick={openModal}>완료일자 변경</CardButtonAble> */}
                     <CardButtonAble disabled={!buttonAble} onClick={()=>ChangeInject(vac_num,null)}>접종일자 제거</CardButtonAble>
                   </CardFieldset>
+
+                  {PDetail(defaultValue,setDay,setVacDate,setVacTime,modalIsOpen,closeModal,hourList,msList)}
 
                   <ItemLine/>
 
