@@ -225,7 +225,7 @@ const PatientInfo = ({ history }) => {
                     <CardButtonAble disabled={!buttonAble} onClick={()=>ChangeInject(vac_num,null)}>접종일자 제거</CardButtonAble>
                   </CardFieldset>
 
-                  {PDetail(defaultValue,setDay,setVacDate,setVacTime,modalIsOpen,closeModal,hourList,msList)}
+                  {/*{PDetail(defaultValue,setDay,setVacDate,setVacTime,modalIsOpen,closeModal,hourList,msList)}*/}
 
                   <ItemLine/>
 
