@@ -32,7 +32,7 @@ export default async (req, res, next) => {
     [start, end],
     async (error, data) => {
       if (error || data.length === 0) res.send(error);
-      else if (data[0].c === elapsedDay - 1) next();
+      else if (data[0].c === elapsedDay) next();
       else {
         await updateCorona({ startCreateDt, endCreateDt, elapsedDay, next });
       }
