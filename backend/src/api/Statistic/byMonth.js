@@ -23,10 +23,10 @@ export default async (app, connection) => {
         month_count.map((v1) => {
           result.map((v2) => {
             if (v1.y_date === v2.y_date && v1.m_date === v2.m_date)
-              v1.count = v2['COUNT(*)'];
+              v1.count += v2['COUNT(*)'];
           });
         });
-        console.log(month_count);
+        console.log("month : ", month_count);
         return res.send(month_count);
       },
     );
