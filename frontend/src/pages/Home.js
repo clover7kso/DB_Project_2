@@ -101,7 +101,7 @@ const Home = ({ history }) => {
                 {
                   backgroundColor: 'rgba(232, 28, 92, 0.7)',
                   barThickness: 30,
-                  data: result.map((item) => item.examCnt),
+                  data: result.map((item) => item.accExamCnt),
                   fill: true,
                 },
               ],
@@ -165,50 +165,6 @@ const Home = ({ history }) => {
                   {
                     ticks: {
                       stepSize: 0.1,
-                    },
-                  },
-                ],
-              },
-            }}
-          />
-        </CardBody>
-      </CardWrapper>
-
-      <CardWrapper>
-        <CardHeader>
-          <CardHeading>치료중</CardHeading>
-        </CardHeader>
-
-        <CardBody>
-          <Bar
-            data={{
-              labels: result.map((item) => item.stateDt),
-              datasets: [
-                {
-                  backgroundColor: 'rgba(232, 28, 92, 0.7)',
-                  barThickness: 30,
-                  data: result.map((item) => item.careCnt),
-                  fill: true,
-                },
-              ],
-            }}
-            options={{
-              responsive: true,
-              legend: { display: false },
-              scales: {
-                xAxes: [
-                  {
-                    gridLines: {
-                      drawOnChartArea: false,
-                    },
-                  },
-                ],
-                yAxes: [
-                  {
-                    ticks: {
-                      beginAtZero: true,
-                      stepSize: 10,
-                      min: 0,
                     },
                   },
                 ],
