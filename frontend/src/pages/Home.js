@@ -26,7 +26,7 @@ const Home = ({ history }) => {
   const start = new Date();
   const end = new Date();
   start.setDate(start.getDate() - 8);
-  end.setDate(end.getDate() - 1);
+  end.setDate(end.getDate());
   var startCreateDt = moment(start).format('YYYYMMDD');
   var endCreateDt = moment(end).format('YYYYMMDD');
 
