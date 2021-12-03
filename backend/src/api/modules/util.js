@@ -78,8 +78,8 @@ export const updateCorona = async ({
         a_c[i].accExamCnt - a_c[i - 1].accExamCnt,
         a_c[i].deathCnt - a_c[i - 1].deathCnt,
         a_c[i].decideCnt - a_c[i - 1].decideCnt,
-        a_c[i - 1].stateDt,
-        a_c[i - 1].stateTime,
+        a_c[i].stateDt,
+        a_c[i].stateTime,
         a_c[i].updateDt,
       ]);
     }
